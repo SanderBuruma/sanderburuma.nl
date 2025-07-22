@@ -133,13 +133,16 @@ if (contactForm) {
 // Add typing animation to hero title
 const heroTitle = document.querySelector('.hero-title');
 if (heroTitle) {
-    const text = heroTitle.innerHTML;
+    const originalHTML = heroTitle.innerHTML;
     heroTitle.innerHTML = '';
     
     let index = 0;
+    let currentHTML = '';
+    
     function typeWriter() {
-        if (index < text.length) {
-            heroTitle.innerHTML += text.charAt(index);
+        if (index < originalHTML.length) {
+            currentHTML += originalHTML.charAt(index);
+            heroTitle.innerHTML = currentHTML;
             index++;
             setTimeout(typeWriter, 50);
         }
