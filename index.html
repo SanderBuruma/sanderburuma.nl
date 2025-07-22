@@ -7,249 +7,444 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>Sander Buruma</h2>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="nav-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="gradient-text">Sander Buruma</span>
-                </h1>
-                <h2 class="hero-subtitle">Software Developer</h2>
-                <p class="hero-description">
-                    I create efficient, scalable solutions with a focus on blockchain technology, 
-                    web development, and data analysis. Passionate about turning complex problems 
-                    into elegant code.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="floating-card">
-                    <i class="fas fa-code"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a software developer with a passion for creating innovative solutions 
-                        in blockchain technology, web development, and data analysis. With experience 
-                        in multiple programming languages and frameworks, I enjoy tackling complex 
-                        challenges and building applications that make a difference.
-                    </p>
-                    <p>
-                        My expertise spans from backend development with Python and JavaScript to 
-                        blockchain analysis and cryptocurrency trading tools. I believe in writing 
-                        clean, maintainable code and staying up-to-date with the latest technologies.
-                    </p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>5+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Technologies</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">HTML/CSS</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">React</span>
-                        <span class="skill-item">Vue.js</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">Node.js</span>
-                        <span class="skill-item">PHP</span>
-                        <span class="skill-item">Django</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Blockchain</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Solana</span>
-                        <span class="skill-item">Web3</span>
-                        <span class="skill-item">DeFi</span>
-                        <span class="skill-item">Smart Contracts</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">Docker</span>
-                        <span class="skill-item">Linux</span>
-                        <span class="skill-item">AWS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Solana Chain Analyzer</h3>
-                        <p>
-                            Comprehensive cryptocurrency analysis tool that processes Solana blockchain 
-                            data to identify trading patterns, volatility, and market trends.
-                        </p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Blockchain</span>
-                            <span>Data Analysis</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Telegram Trading Bot</h3>
-                        <p>
-                            Automated trading signal analyzer that evaluates crypto trading channels 
-                            and provides performance metrics and success rates.
-                        </p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Telegram API</span>
-                            <span>Django</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Blockchain Wallet Inspector</h3>
-                        <p>
-                            Web3 tool for inspecting Solana wallets, displaying token balances, 
-                            and transaction history with a clean, user-friendly interface.
-                        </p>
-                        <div class="project-tags">
-                            <span>Web3</span>
-                            <span>Solana</span>
-                            <span>React</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's work together</h3>
-                    <p>
-                        I'm always interested in new opportunities and exciting projects. 
-                        Whether you have a question or just want to say hi, feel free to reach out!
-                    </p>
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:sander@sanderburuma.nl">sander@sanderburuma.nl</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <a href="https://github.com/sanderburuma" target="_blank" rel="noopener">github.com/sanderburuma</a>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Sander Buruma. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="https://github.com/sanderburuma" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        
+        const Navbar = () => {
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 100);
+                };
+                
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+            
+            const navStyle = {
+                background: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: scrolled ? 'blur(20px)' : 'blur(10px)'
+            };
+            
+            return React.createElement('nav', {
+                className: 'navbar',
+                style: navStyle
+            },
+                React.createElement('div', { className: 'nav-container' },
+                    React.createElement('div', { className: 'nav-logo' },
+                        React.createElement('h2', null, 'Sander Buruma')
+                    ),
+                    React.createElement('ul', {
+                        className: `nav-menu ${mobileMenuOpen ? 'active' : ''}`
+                    },
+                        ['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => 
+                            React.createElement('li', { key: item, className: 'nav-item' },
+                                React.createElement('a', {
+                                    href: `#${item.toLowerCase()}`,
+                                    className: 'nav-link',
+                                    onClick: () => setMobileMenuOpen(false)
+                                }, item)
+                            )
+                        )
+                    ),
+                    React.createElement('div', {
+                        className: `nav-toggle ${mobileMenuOpen ? 'active' : ''}`,
+                        onClick: () => setMobileMenuOpen(!mobileMenuOpen)
+                    },
+                        React.createElement('span', { className: 'bar' }),
+                        React.createElement('span', { className: 'bar' }),
+                        React.createElement('span', { className: 'bar' })
+                    )
+                )
+            );
+        };
+        
+        const HeroSection = () => {
+            const [titleText, setTitleText] = useState('');
+            const fullTitle = "Hi, I'm <span class=\"gradient-text\">Sander Buruma</span>";
+            
+            useEffect(() => {
+                let index = 0;
+                const timer = setTimeout(() => {
+                    const typeWriter = () => {
+                        if (index < fullTitle.length) {
+                            setTitleText(fullTitle.slice(0, index + 1));
+                            index++;
+                            setTimeout(typeWriter, 50);
+                        }
+                    };
+                    typeWriter();
+                }, 500);
+                
+                return () => clearTimeout(timer);
+            }, []);
+            
+            return React.createElement('section', { id: 'home', className: 'hero' },
+                React.createElement('div', { className: 'hero-container' },
+                    React.createElement('div', { className: 'hero-content' },
+                        React.createElement('h1', {
+                            className: 'hero-title',
+                            dangerouslySetInnerHTML: { __html: titleText }
+                        }),
+                        React.createElement('h2', { className: 'hero-subtitle' }, 'Software Developer'),
+                        React.createElement('p', { className: 'hero-description' },
+                            'I create efficient, scalable solutions with a focus on blockchain technology, web development, and data analysis. Passionate about turning complex problems into elegant code.'
+                        ),
+                        React.createElement('div', { className: 'hero-buttons' },
+                            React.createElement('a', {
+                                href: '#projects',
+                                className: 'btn btn-primary'
+                            }, 'View My Work'),
+                            React.createElement('a', {
+                                href: '#contact',
+                                className: 'btn btn-secondary'
+                            }, 'Get In Touch')
+                        )
+                    ),
+                    React.createElement('div', { className: 'hero-image' },
+                        React.createElement('div', { className: 'floating-card' },
+                            React.createElement('i', { className: 'fas fa-code' })
+                        )
+                    )
+                )
+            );
+        };
+        
+        const AboutSection = () => {
+            return React.createElement('section', { id: 'about', className: 'about' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('h2', { className: 'section-title' }, 'About Me'),
+                    React.createElement('div', { className: 'about-content' },
+                        React.createElement('div', { className: 'about-text' },
+                            React.createElement('p', null,
+                                "I'm a software developer with a passion for creating innovative solutions in blockchain technology, web development, and data analysis. With experience in multiple programming languages and frameworks, I enjoy tackling complex challenges and building applications that make a difference."
+                            ),
+                            React.createElement('p', null,
+                                'My expertise spans from backend development with Python and JavaScript to blockchain analysis and cryptocurrency trading tools. I believe in writing clean, maintainable code and staying up-to-date with the latest technologies.'
+                            )
+                        ),
+                        React.createElement('div', { className: 'about-stats' },
+                            React.createElement('div', { className: 'stat' },
+                                React.createElement('h3', null, '5+'),
+                                React.createElement('p', null, 'Years Experience')
+                            ),
+                            React.createElement('div', { className: 'stat' },
+                                React.createElement('h3', null, '50+'),
+                                React.createElement('p', null, 'Projects Completed')
+                            ),
+                            React.createElement('div', { className: 'stat' },
+                                React.createElement('h3', null, '10+'),
+                                React.createElement('p', null, 'Technologies')
+                            )
+                        )
+                    )
+                )
+            );
+        };
+        
+        const SkillsSection = () => {
+            const skills = [
+                {
+                    category: 'Frontend',
+                    items: ['HTML/CSS', 'JavaScript', 'React', 'Vue.js']
+                },
+                {
+                    category: 'Backend',
+                    items: ['Python', 'Node.js', 'PHP', 'Django']
+                },
+                {
+                    category: 'Blockchain',
+                    items: ['Solana', 'Web3', 'DeFi', 'Smart Contracts']
+                },
+                {
+                    category: 'Tools',
+                    items: ['Git', 'Docker', 'Linux', 'AWS']
+                }
+            ];
+            
+            return React.createElement('section', { id: 'skills', className: 'skills' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('h2', { className: 'section-title' }, 'Skills & Technologies'),
+                    React.createElement('div', { className: 'skills-grid' },
+                        skills.map(skill => 
+                            React.createElement('div', {
+                                key: skill.category,
+                                className: 'skill-category'
+                            },
+                                React.createElement('h3', null, skill.category),
+                                React.createElement('div', { className: 'skill-items' },
+                                    skill.items.map(item => 
+                                        React.createElement('span', {
+                                            key: item,
+                                            className: 'skill-item'
+                                        }, item)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+        
+        const ProjectsSection = () => {
+            const projects = [
+                {
+                    title: 'Solana Chain Analyzer',
+                    icon: 'fas fa-chart-line',
+                    description: 'Comprehensive cryptocurrency analysis tool that processes Solana blockchain data to identify trading patterns, volatility, and market trends.',
+                    tags: ['Python', 'Blockchain', 'Data Analysis']
+                },
+                {
+                    title: 'Telegram Trading Bot',
+                    icon: 'fas fa-robot',
+                    description: 'Automated trading signal analyzer that evaluates crypto trading channels and provides performance metrics and success rates.',
+                    tags: ['Python', 'Telegram API', 'Django']
+                },
+                {
+                    title: 'Blockchain Wallet Inspector',
+                    icon: 'fas fa-wallet',
+                    description: 'Web3 tool for inspecting Solana wallets, displaying token balances, and transaction history with a clean, user-friendly interface.',
+                    tags: ['Web3', 'Solana', 'React']
+                }
+            ];
+            
+            return React.createElement('section', { id: 'projects', className: 'projects' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('h2', { className: 'section-title' }, 'Featured Projects'),
+                    React.createElement('div', { className: 'projects-grid' },
+                        projects.map(project => 
+                            React.createElement('div', {
+                                key: project.title,
+                                className: 'project-card'
+                            },
+                                React.createElement('div', { className: 'project-image' },
+                                    React.createElement('i', { className: project.icon })
+                                ),
+                                React.createElement('div', { className: 'project-content' },
+                                    React.createElement('h3', null, project.title),
+                                    React.createElement('p', null, project.description),
+                                    React.createElement('div', { className: 'project-tags' },
+                                        project.tags.map(tag => 
+                                            React.createElement('span', { key: tag }, tag)
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+        
+        const ContactSection = () => {
+            const [formData, setFormData] = useState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            const [isSubmitting, setIsSubmitting] = useState(false);
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                
+                if (!formData.name || !formData.email || !formData.message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+                
+                setIsSubmitting(true);
+                
+                setTimeout(() => {
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                    setFormData({ name: '', email: '', message: '' });
+                    setIsSubmitting(false);
+                }, 1500);
+            };
+            
+            const handleChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+            
+            return React.createElement('section', { id: 'contact', className: 'contact' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('h2', { className: 'section-title' }, 'Get In Touch'),
+                    React.createElement('div', { className: 'contact-content' },
+                        React.createElement('div', { className: 'contact-info' },
+                            React.createElement('h3', null, 'Let\'s work together'),
+                            React.createElement('p', null,
+                                'I\'m always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, feel free to reach out!'
+                            ),
+                            React.createElement('div', { className: 'contact-items' },
+                                React.createElement('div', { className: 'contact-item' },
+                                    React.createElement('i', { className: 'fas fa-envelope' }),
+                                    React.createElement('a', {
+                                        href: 'mailto:sander@sanderburuma.nl'
+                                    }, 'sander@sanderburuma.nl')
+                                ),
+                                React.createElement('div', { className: 'contact-item' },
+                                    React.createElement('i', { className: 'fab fa-github' }),
+                                    React.createElement('a', {
+                                        href: 'https://github.com/sanderburuma',
+                                        target: '_blank',
+                                        rel: 'noopener'
+                                    }, 'github.com/sanderburuma')
+                                )
+                            )
+                        ),
+                        React.createElement('form', {
+                            className: 'contact-form',
+                            onSubmit: handleSubmit
+                        },
+                            React.createElement('div', { className: 'form-group' },
+                                React.createElement('input', {
+                                    type: 'text',
+                                    name: 'name',
+                                    placeholder: 'Your Name',
+                                    required: true,
+                                    value: formData.name,
+                                    onChange: handleChange
+                                })
+                            ),
+                            React.createElement('div', { className: 'form-group' },
+                                React.createElement('input', {
+                                    type: 'email',
+                                    name: 'email',
+                                    placeholder: 'Your Email',
+                                    required: true,
+                                    value: formData.email,
+                                    onChange: handleChange
+                                })
+                            ),
+                            React.createElement('div', { className: 'form-group' },
+                                React.createElement('textarea', {
+                                    name: 'message',
+                                    rows: 5,
+                                    placeholder: 'Your Message',
+                                    required: true,
+                                    value: formData.message,
+                                    onChange: handleChange
+                                })
+                            ),
+                            React.createElement('button', {
+                                type: 'submit',
+                                className: 'btn btn-primary',
+                                disabled: isSubmitting
+                            }, isSubmitting ? 'Sending...' : 'Send Message')
+                        )
+                    )
+                )
+            );
+        };
+        
+        const Footer = () => {
+            return React.createElement('footer', { className: 'footer' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('div', { className: 'footer-content' },
+                        React.createElement('p', null, '© 2025 Sander Buruma. All rights reserved.'),
+                        React.createElement('div', { className: 'social-links' },
+                            React.createElement('a', {
+                                href: 'https://github.com/sanderburuma',
+                                target: '_blank',
+                                rel: 'noopener',
+                                className: 'social-link'
+                            },
+                                React.createElement('i', { className: 'fab fa-github' })
+                            )
+                        )
+                    )
+                )
+            );
+        };
+        
+        const App = () => {
+            useEffect(() => {
+                const smoothScroll = (e) => {
+                    if (e.target.getAttribute('href')?.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(e.target.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                };
+                
+                document.addEventListener('click', smoothScroll);
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                const animatedElements = document.querySelectorAll('.skill-category, .project-card, .stat');
+                animatedElements.forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s ease-out';
+                    observer.observe(el);
+                });
+                
+                const handleParallax = () => {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll('.floating-card');
+                    parallaxElements.forEach(element => {
+                        const speed = 0.5;
+                        element.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                };
+                
+                window.addEventListener('scroll', handleParallax);
+                
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 100);
+                
+                return () => {
+                    document.removeEventListener('click', smoothScroll);
+                    window.removeEventListener('scroll', handleParallax);
+                };
+            }, []);
+            
+            return React.createElement('div', null,
+                React.createElement(Navbar),
+                React.createElement(HeroSection),
+                React.createElement(AboutSection),
+                React.createElement(SkillsSection),
+                React.createElement(ProjectsSection),
+                React.createElement(ContactSection),
+                React.createElement(Footer)
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
 </body>
 </html>

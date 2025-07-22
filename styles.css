@@ -334,6 +334,13 @@ section {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: scale(1.05);
+    background-color: #6366f1;
+    color: white;
 }
 
 /* Projects Section */
