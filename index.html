@@ -131,7 +131,7 @@
                     React.createElement('ul', {
                         className: `nav-menu ${mobileMenuOpen ? 'active' : ''}`
                     },
-                        ['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => 
+                        ['Home', 'About', 'Skills', 'Projects', 'Minesweeper', 'Contact'].map(item =>
                             React.createElement('li', { key: item, className: 'nav-item' },
                                 React.createElement('a', {
                                     href: `#${item.toLowerCase()}`,
@@ -590,6 +590,213 @@
             );
         };
         
+        const Minesweeper4D = () => {
+            const [board, setBoard] = useState([]);
+            const [gameOver, setGameOver] = useState(false);
+            const [win, setWin] = useState(false);
+
+            const SIZE = 4;
+            const MINES = 20;
+
+            useEffect(() => {
+                setBoard(createBoard());
+            }, []);
+
+            const createBoard = () => {
+                let newBoard = Array(SIZE).fill(0).map(() =>
+                    Array(SIZE).fill(0).map(() =>
+                        Array(SIZE).fill(0).map(() =>
+                            Array(SIZE).fill(0).map(() => ({
+                                isMine: false,
+                                isRevealed: false,
+                                isFlagged: false,
+                                adjacentMines: 0
+                            }))
+                        )
+                    )
+                );
+
+                let minesPlaced = 0;
+                while (minesPlaced < MINES) {
+                    const x = Math.floor(Math.random() * SIZE);
+                    const y = Math.floor(Math.random() * SIZE);
+                    const z = Math.floor(Math.random() * SIZE);
+                    const w = Math.floor(Math.random() * SIZE);
+
+                    if (!newBoard[w][z][y][x].isMine) {
+                        newBoard[w][z][y][x].isMine = true;
+                        minesPlaced++;
+                    }
+                }
+
+                for (let w = 0; w < SIZE; w++) {
+                    for (let z = 0; z < SIZE; z++) {
+                        for (let y = 0; y < SIZE; y++) {
+                            for (let x = 0; x < SIZE; x++) {
+                                if (!newBoard[w][z][y][x].isMine) {
+                                    newBoard[w][z][y][x].adjacentMines = countAdjacentMines(newBoard, x, y, z, w);
+                                }
+                            }
+                        }
+                    }
+                }
+                return newBoard;
+            };
+
+            const countAdjacentMines = (board, x, y, z, w) => {
+                let count = 0;
+                for (let dw = -1; dw <= 1; dw++) {
+                    for (let dz = -1; dz <= 1; dz++) {
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue;
+
+                                const nw = w + dw;
+                                const nz = z + dz;
+                                const ny = y + dy;
+                                const nx = x + dx;
+
+                                if (nw >= 0 && nw < SIZE && nz >= 0 && nz < SIZE && ny >= 0 && ny < SIZE && nx >= 0 && nx < SIZE) {
+                                    if (board[nw][nz][ny][nx].isMine) {
+                                        count++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return count;
+            };
+
+            const renderBoard = () => {
+                if (!board.length) return null;
+
+                return React.createElement('div', { className: 'grid-of-grids' },
+                    Array.from({ length: SIZE }, (_, w) =>
+                        Array.from({ length: SIZE }, (_, z) =>
+                            React.createElement('div', { key: `${w}-${z}`, className: 'minesweeper-grid' },
+                                board[w][z].map((row, y) =>
+                                    row.map((cell, x) =>
+                                        React.createElement('div', {
+                                            key: `${y}-${x}`,
+                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''}`,
+                                            onClick: () => handleCellClick(x, y, z, w),
+                                            onContextMenu: (e) => handleFlag(e, x, y, z, w)
+                                        }, cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 ? cell.adjacentMines : (cell.isFlagged ? '🚩' : ''))
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
+            };
+
+            const handleFlag = (e, x, y, z, w) => {
+                e.preventDefault();
+                if (gameOver) return;
+
+                let newBoard = JSON.parse(JSON.stringify(board));
+                const cell = newBoard[w][z][y][x];
+
+                if (!cell.isRevealed) {
+                    cell.isFlagged = !cell.isFlagged;
+                }
+                setBoard(newBoard);
+            };
+
+            const handleCellClick = (x, y, z, w) => {
+                if (gameOver) return;
+
+                let newBoard = JSON.parse(JSON.stringify(board));
+                if (newBoard[w][z][y][x].isMine) {
+                    setGameOver(true);
+                    revealAllMines(newBoard);
+                } else {
+                    revealCell(newBoard, x, y, z, w);
+                    if (checkWinCondition(newBoard)) {
+                        setWin(true);
+                        setGameOver(true);
+                    }
+                }
+                setBoard(newBoard);
+            };
+
+            const checkWinCondition = (board) => {
+                for (let w = 0; w < SIZE; w++) {
+                    for (let z = 0; z < SIZE; z++) {
+                        for (let y = 0; y < SIZE; y++) {
+                            for (let x = 0; x < SIZE; x++) {
+                                const cell = board[w][z][y][x];
+                                if (!cell.isMine && !cell.isRevealed) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                return true;
+            };
+
+            const revealCell = (board, x, y, z, w) => {
+                if (x < 0 || x >= SIZE || y < 0 || y >= SIZE || z < 0 || z >= SIZE || w < 0 || w >= SIZE) return;
+
+                const cell = board[w][z][y][x];
+                if (cell.isRevealed) return;
+
+                cell.isRevealed = true;
+
+                if (cell.adjacentMines === 0 && !cell.isMine) {
+                    for (let dw = -1; dw <= 1; dw++) {
+                        for (let dz = -1; dz <= 1; dz++) {
+                            for (let dy = -1; dy <= 1; dy++) {
+                                for (let dx = -1; dx <= 1; dx++) {
+                                    if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue;
+                                    revealCell(board, x + dx, y + dy, z + dz, w + dw);
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const revealAllMines = (board) => {
+                for (let w = 0; w < SIZE; w++) {
+                    for (let z = 0; z < SIZE; z++) {
+                        for (let y = 0; y < SIZE; y++) {
+                            for (let x = 0; x < SIZE; x++) {
+                                if (board[w][z][y][x].isMine) {
+                                    board[w][z][y][x].isRevealed = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            return React.createElement('div', { className: 'minesweeper-container' },
+                React.createElement('h2', { className: 'section-title' }, '4D Minesweeper'),
+                renderBoard(),
+                win && React.createElement('div', { className: 'game-over-message' }, 'You Win!'),
+                gameOver && !win && React.createElement('div', { className: 'game-over-message' }, 'Game Over'),
+                React.createElement('button', {
+                    className: 'btn btn-primary',
+                    onClick: () => {
+                        setGameOver(false);
+                        setWin(false);
+                        setBoard(createBoard());
+                    }
+                }, 'Reset')
+            );
+        };
+
+        const MinesweeperSection = () => {
+            return React.createElement('section', { id: 'minesweeper', className: 'minesweeper' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement(Minesweeper4D)
+                )
+            );
+        };
+
         const AppContent = () => {
             useEffect(() => {
                 const smoothScroll = (e) => {
@@ -653,6 +860,7 @@
                 React.createElement(AboutSection),
                 React.createElement(SkillsSection),
                 React.createElement(ProjectsSection),
+                React.createElement(MinesweeperSection),
                 React.createElement(ContactSection),
                 React.createElement(Footer)
             );
