@@ -678,7 +678,7 @@
                                 board[w][z].map((row, y) =>
                                     row.map((cell, x) =>
                                         React.createElement('div', {
-                                            key: `${y}-${x}`,
+                                            key: `${w}-${z}-${y}-${x}`,
                                             className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''}`,
                                             onClick: () => handleCellClick(x, y, z, w),
                                             onContextMenu: (e) => handleFlag(e, x, y, z, w)
@@ -695,19 +695,30 @@
                 e.preventDefault();
                 if (gameOver) return;
 
-                let newBoard = JSON.parse(JSON.stringify(board));
-                const cell = newBoard[w][z][y][x];
+                setBoard(prevBoard => {
+                    const newBoard = [...prevBoard];
+                    const newW = [...newBoard[w]];
+                    const newZ = [...newW[z]];
+                    const newY = [...newZ[y]];
+                    const newCell = { ...newY[x] };
 
-                if (!cell.isRevealed) {
-                    cell.isFlagged = !cell.isFlagged;
-                }
-                setBoard(newBoard);
+                    if (!newCell.isRevealed) {
+                        newCell.isFlagged = !newCell.isFlagged;
+                    }
+
+                    newY[x] = newCell;
+                    newZ[y] = newY;
+                    newW[z] = newZ;
+                    newBoard[w] = newW;
+                    return newBoard;
+                });
             };
 
             const handleCellClick = (x, y, z, w) => {
                 if (gameOver) return;
 
-                let newBoard = JSON.parse(JSON.stringify(board));
+                let newBoard = board.map(arrW => arrW.map(arrZ => arrZ.map(arrY => arrY.map(cell => ({...cell})))));
+
                 if (newBoard[w][z][y][x].isMine) {
                     setGameOver(true);
                     revealAllMines(newBoard);
