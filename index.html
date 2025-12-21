@@ -131,7 +131,7 @@
                     React.createElement('ul', {
                         className: `nav-menu ${mobileMenuOpen ? 'active' : ''}`
                     },
-                        ['Home', 'About', 'Skills', 'Projects', 'Minesweeper', 'Contact'].map(item =>
+                        ['Home', 'About', 'Experience', 'Projects', 'Minesweeper', 'Contact'].map(item =>
                             React.createElement('li', { key: item, className: 'nav-item' },
                                 React.createElement('a', {
                                     href: `#${item.toLowerCase()}`,
@@ -223,6 +223,12 @@
         };
         
         const AboutSection = () => {
+            // Calculate years of experience from February 2020 to now, rounded up
+            const startDate = new Date(2020, 1); // February 2020 (month is 0-indexed)
+            const now = new Date();
+            const yearsDiff = (now - startDate) / (1000 * 60 * 60 * 24 * 365.25);
+            const yearsExperience = Math.ceil(yearsDiff);
+
             return React.createElement('section', { id: 'about', className: 'about' },
                 React.createElement('div', { className: 'container' },
                     React.createElement('h2', { className: 'section-title' }, 'About Me'),
@@ -237,7 +243,7 @@
                         ),
                         React.createElement('div', { className: 'about-stats' },
                             React.createElement(StatCard, {
-                                value: 5,
+                                value: yearsExperience,
                                 label: 'Years Experience',
                                 suffix: '+'
                             }),
@@ -257,103 +263,81 @@
             );
         };
         
-        const SkillBar = ({ skill, level }) => {
-            const [progress, setProgress] = useState(0);
-            const [isVisible, setIsVisible] = useState(false);
-            const ref = useRef();
-            
-            useEffect(() => {
-                const observer = new IntersectionObserver(
-                    ([entry]) => {
-                        if (entry.isIntersecting && !isVisible) {
-                            setIsVisible(true);
-                            setTimeout(() => setProgress(level), 300);
-                        }
-                    },
-                    { threshold: 0.1 }
-                );
-                
-                if (ref.current) {
-                    observer.observe(ref.current);
-                }
-                
-                return () => observer.disconnect();
-            }, [level, isVisible]);
-            
-            return React.createElement('div', { className: 'skill-bar', ref },
-                React.createElement('div', { className: 'skill-bar-header' },
-                    React.createElement('span', null, skill),
-                    React.createElement('span', null, `${level}%`)
-                ),
-                React.createElement('div', { className: 'skill-bar-track' },
-                    React.createElement('div', {
-                        className: 'skill-bar-progress',
-                        style: {
-                            width: `${progress}%`,
-                            transition: 'width 1.5s ease-out'
-                        }
-                    })
-                )
-            );
-        };
-        
-        const SkillsSection = () => {
-            const skills = [
+        const ExperienceSection = () => {
+            const experiences = [
                 {
-                    category: 'Frontend',
-                    items: [
-                        { name: 'HTML/CSS', level: 90 },
-                        { name: 'JavaScript', level: 85 },
-                        { name: 'React', level: 80 },
-                        { name: 'Vue.js', level: 75 }
+                    title: 'Python Developer',
+                    company: 'CitizenGO',
+                    location: 'Remote',
+                    period: 'Nov 2022 - Present',
+                    description: [
+                        'Developed Python Selenium end-to-end test environment for donation pipeline',
+                        'Implemented SQL monitoring of donation pipeline acceptance ratio and fraud detection',
+                        'Built AI project with Python Django for employee productivity reporting to management'
                     ]
                 },
                 {
-                    category: 'Backend',
-                    items: [
-                        { name: 'Python', level: 95 },
-                        { name: 'Node.js', level: 80 },
-                        { name: 'PHP', level: 70 },
-                        { name: 'Django', level: 85 }
+                    title: 'Dotnet Developer',
+                    company: 'AWI bv',
+                    location: 'Netherlands',
+                    period: 'May 2022 - Nov 2022',
+                    description: [
+                        'Fixed bugs in decades-old C# legacy codebase with millions of lines of code',
+                        'Performed general refactoring and code improvements'
                     ]
                 },
                 {
-                    category: 'Blockchain',
-                    items: [
-                        { name: 'Solana', level: 85 },
-                        { name: 'Web3', level: 80 },
-                        { name: 'DeFi', level: 75 },
-                        { name: 'Smart Contracts', level: 70 }
+                    title: 'Python Developer | Database Admin | Data Analyst',
+                    company: 'Civitas Christiana',
+                    location: 'Veenendaal',
+                    period: 'Feb 2021 - May 2022',
+                    description: [
+                        'Automated donation data input, saving 20 hours per week',
+                        'Implemented auto-correction of erroneous user input using Python',
+                        'Extracted data from legacy website using Python Selenium',
+                        'Implemented postcode checker in PHP, eliminating address errors',
+                        'Provided general IT support'
                     ]
                 },
                 {
-                    category: 'Tools',
-                    items: [
-                        { name: 'Git', level: 90 },
-                        { name: 'Docker', level: 75 },
-                        { name: 'Linux', level: 85 },
-                        { name: 'AWS', level: 70 }
+                    title: 'Dotnet Developer',
+                    company: 'HRorganizer',
+                    location: 'Wageningen',
+                    period: 'Jan 2020 - Feb 2021',
+                    description: [
+                        'Converted 100,000+ lines of .NET code from synchronous to asynchronous',
+                        'Achieved 20% latency improvement',
+                        'Built personalization test in Angular (TypeScript) now in production use'
                     ]
                 }
             ];
-            
-            return React.createElement('section', { id: 'skills', className: 'skills' },
+
+            return React.createElement('section', { id: 'experience', className: 'experience' },
                 React.createElement('div', { className: 'container' },
-                    React.createElement('h2', { className: 'section-title' }, 'Skills & Technologies'),
-                    React.createElement('div', { className: 'skills-grid' },
-                        skills.map(skill => 
+                    React.createElement('h2', { className: 'section-title' }, 'Work Experience'),
+                    React.createElement('div', { className: 'experience-timeline' },
+                        experiences.map((exp, index) =>
                             React.createElement('div', {
-                                key: skill.category,
-                                className: 'skill-category'
+                                key: index,
+                                className: 'experience-item'
                             },
-                                React.createElement('h3', null, skill.category),
-                                React.createElement('div', { className: 'skill-bars' },
-                                    skill.items.map(item => 
-                                        React.createElement(SkillBar, {
-                                            key: item.name,
-                                            skill: item.name,
-                                            level: item.level
-                                        })
+                                React.createElement('div', { className: 'experience-content' },
+                                    React.createElement('div', { className: 'experience-header' },
+                                        React.createElement('div', null,
+                                            React.createElement('h3', null, exp.title),
+                                            React.createElement('h4', null, exp.company),
+                                            React.createElement('p', { className: 'experience-meta' },
+                                                React.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                                                ` ${exp.location} | `,
+                                                React.createElement('i', { className: 'fas fa-calendar' }),
+                                                ` ${exp.period}`
+                                            )
+                                        )
+                                    ),
+                                    React.createElement('ul', { className: 'experience-description' },
+                                        exp.description.map((item, i) =>
+                                            React.createElement('li', { key: i }, item)
+                                        )
                                     )
                                 )
                             )
@@ -362,7 +346,7 @@
                 )
             );
         };
-        
+
         const ProjectsSection = () => {
             const [filter, setFilter] = useState('all');
             const [searchTerm, setSearchTerm] = useState('');
@@ -522,6 +506,14 @@
                                         target: '_blank',
                                         rel: 'noopener'
                                     }, 'github.com/sanderburuma')
+                                ),
+                                React.createElement('div', { className: 'contact-item' },
+                                    React.createElement('i', { className: 'fab fa-linkedin' }),
+                                    React.createElement('a', {
+                                        href: 'https://www.linkedin.com/in/sander-buruma-729a84235',
+                                        target: '_blank',
+                                        rel: 'noopener'
+                                    }, 'linkedin.com/in/sander-buruma')
                                 )
                             )
                         ),
@@ -583,6 +575,14 @@
                                 className: 'social-link'
                             },
                                 React.createElement('i', { className: 'fab fa-github' })
+                            ),
+                            React.createElement('a', {
+                                href: 'https://www.linkedin.com/in/sander-buruma-729a84235',
+                                target: '_blank',
+                                rel: 'noopener',
+                                className: 'social-link'
+                            },
+                                React.createElement('i', { className: 'fab fa-linkedin' })
                             )
                         )
                     )
@@ -869,7 +869,7 @@
                 React.createElement(Navbar),
                 React.createElement(HeroSection),
                 React.createElement(AboutSection),
-                React.createElement(SkillsSection),
+                React.createElement(ExperienceSection),
                 React.createElement(ProjectsSection),
                 React.createElement(MinesweeperSection),
                 React.createElement(ContactSection),
