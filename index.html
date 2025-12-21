@@ -223,6 +223,12 @@
         };
         
         const AboutSection = () => {
+            // Calculate years of experience from February 2020 to now, rounded up
+            const startDate = new Date(2020, 1); // February 2020 (month is 0-indexed)
+            const now = new Date();
+            const yearsDiff = (now - startDate) / (1000 * 60 * 60 * 24 * 365.25);
+            const yearsExperience = Math.ceil(yearsDiff);
+
             return React.createElement('section', { id: 'about', className: 'about' },
                 React.createElement('div', { className: 'container' },
                     React.createElement('h2', { className: 'section-title' }, 'About Me'),
@@ -237,7 +243,7 @@
                         ),
                         React.createElement('div', { className: 'about-stats' },
                             React.createElement(StatCard, {
-                                value: 5,
+                                value: yearsExperience,
                                 label: 'Years Experience',
                                 suffix: '+'
                             }),
