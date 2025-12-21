@@ -131,7 +131,7 @@
                     React.createElement('ul', {
                         className: `nav-menu ${mobileMenuOpen ? 'active' : ''}`
                     },
-                        ['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => 
+                        ['Home', 'About', 'Projects', 'Contact'].map(item => 
                             React.createElement('li', { key: item, className: 'nav-item' },
                                 React.createElement('a', {
                                     href: `#${item.toLowerCase()}`,
@@ -251,112 +251,6 @@
                                 label: 'Technologies',
                                 suffix: '+'
                             })
-                        )
-                    )
-                )
-            );
-        };
-        
-        const SkillBar = ({ skill, level }) => {
-            const [progress, setProgress] = useState(0);
-            const [isVisible, setIsVisible] = useState(false);
-            const ref = useRef();
-            
-            useEffect(() => {
-                const observer = new IntersectionObserver(
-                    ([entry]) => {
-                        if (entry.isIntersecting && !isVisible) {
-                            setIsVisible(true);
-                            setTimeout(() => setProgress(level), 300);
-                        }
-                    },
-                    { threshold: 0.1 }
-                );
-                
-                if (ref.current) {
-                    observer.observe(ref.current);
-                }
-                
-                return () => observer.disconnect();
-            }, [level, isVisible]);
-            
-            return React.createElement('div', { className: 'skill-bar', ref },
-                React.createElement('div', { className: 'skill-bar-header' },
-                    React.createElement('span', null, skill),
-                    React.createElement('span', null, `${level}%`)
-                ),
-                React.createElement('div', { className: 'skill-bar-track' },
-                    React.createElement('div', {
-                        className: 'skill-bar-progress',
-                        style: {
-                            width: `${progress}%`,
-                            transition: 'width 1.5s ease-out'
-                        }
-                    })
-                )
-            );
-        };
-        
-        const SkillsSection = () => {
-            const skills = [
-                {
-                    category: 'Frontend',
-                    items: [
-                        { name: 'HTML/CSS', level: 90 },
-                        { name: 'JavaScript', level: 85 },
-                        { name: 'React', level: 80 },
-                        { name: 'Vue.js', level: 75 }
-                    ]
-                },
-                {
-                    category: 'Backend',
-                    items: [
-                        { name: 'Python', level: 95 },
-                        { name: 'Node.js', level: 80 },
-                        { name: 'PHP', level: 70 },
-                        { name: 'Django', level: 85 }
-                    ]
-                },
-                {
-                    category: 'Blockchain',
-                    items: [
-                        { name: 'Solana', level: 85 },
-                        { name: 'Web3', level: 80 },
-                        { name: 'DeFi', level: 75 },
-                        { name: 'Smart Contracts', level: 70 }
-                    ]
-                },
-                {
-                    category: 'Tools',
-                    items: [
-                        { name: 'Git', level: 90 },
-                        { name: 'Docker', level: 75 },
-                        { name: 'Linux', level: 85 },
-                        { name: 'AWS', level: 70 }
-                    ]
-                }
-            ];
-            
-            return React.createElement('section', { id: 'skills', className: 'skills' },
-                React.createElement('div', { className: 'container' },
-                    React.createElement('h2', { className: 'section-title' }, 'Skills & Technologies'),
-                    React.createElement('div', { className: 'skills-grid' },
-                        skills.map(skill => 
-                            React.createElement('div', {
-                                key: skill.category,
-                                className: 'skill-category'
-                            },
-                                React.createElement('h3', null, skill.category),
-                                React.createElement('div', { className: 'skill-bars' },
-                                    skill.items.map(item => 
-                                        React.createElement(SkillBar, {
-                                            key: item.name,
-                                            skill: item.name,
-                                            level: item.level
-                                        })
-                                    )
-                                )
-                            )
                         )
                     )
                 )
@@ -651,7 +545,6 @@
                 React.createElement(Navbar),
                 React.createElement(HeroSection),
                 React.createElement(AboutSection),
-                React.createElement(SkillsSection),
                 React.createElement(ProjectsSection),
                 React.createElement(ContactSection),
                 React.createElement(Footer)
