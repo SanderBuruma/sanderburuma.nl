@@ -594,6 +594,7 @@
             const [board, setBoard] = useState([]);
             const [gameOver, setGameOver] = useState(false);
             const [win, setWin] = useState(false);
+            const [hoveredCell, setHoveredCell] = useState(null);
 
             const SIZE = 4;
             const MINES = 20;
@@ -668,6 +669,15 @@
                 return count;
             };
 
+            const isAdjacent = (x1, y1, z1, w1, x2, y2, z2, w2) => {
+                if (x1 === x2 && y1 === y2 && z1 === z2 && w1 === w2) return false;
+                const dx = Math.abs(x1 - x2);
+                const dy = Math.abs(y1 - y2);
+                const dz = Math.abs(z1 - z2);
+                const dw = Math.abs(w1 - w2);
+                return dx <= 1 && dy <= 1 && dz <= 1 && dw <= 1;
+            };
+
             const renderBoard = () => {
                 if (!board.length) return null;
 
@@ -676,14 +686,19 @@
                         Array.from({ length: SIZE }, (_, z) =>
                             React.createElement('div', { key: `${w}-${z}`, className: 'minesweeper-grid' },
                                 board[w][z].map((row, y) =>
-                                    row.map((cell, x) =>
-                                        React.createElement('div', {
+                                    row.map((cell, x) => {
+                                        const isAdjacentToHovered = hoveredCell &&
+                                            isAdjacent(x, y, z, w, hoveredCell.x, hoveredCell.y, hoveredCell.z, hoveredCell.w);
+
+                                        return React.createElement('div', {
                                             key: `${w}-${z}-${y}-${x}`,
-                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''}`,
+                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''}`,
                                             onClick: () => handleCellClick(x, y, z, w),
-                                            onContextMenu: (e) => handleFlag(e, x, y, z, w)
-                                        }, cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 ? cell.adjacentMines : (cell.isFlagged ? '🚩' : ''))
-                                    )
+                                            onContextMenu: (e) => handleFlag(e, x, y, z, w),
+                                            onMouseEnter: () => setHoveredCell({ x, y, z, w }),
+                                            onMouseLeave: () => setHoveredCell(null)
+                                        }, cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 ? cell.adjacentMines : (cell.isFlagged ? '🚩' : ''));
+                                    })
                                 )
                             )
                         )
@@ -715,7 +730,25 @@
             };
 
             const handleCellClick = (x, y, z, w) => {
-                if (gameOver) return;
+                if (gameOver) {
+                    // Reset the game and reveal the clicked cell
+                    const newBoard = createBoard();
+                    setGameOver(false);
+                    setWin(false);
+
+                    if (newBoard[w][z][y][x].isMine) {
+                        setGameOver(true);
+                        revealAllMines(newBoard);
+                    } else {
+                        revealCell(newBoard, x, y, z, w);
+                        if (checkWinCondition(newBoard)) {
+                            setWin(true);
+                            setGameOver(true);
+                        }
+                    }
+                    setBoard(newBoard);
+                    return;
+                }
 
                 let newBoard = board.map(arrW => arrW.map(arrZ => arrZ.map(arrY => arrY.map(cell => ({...cell})))));
 

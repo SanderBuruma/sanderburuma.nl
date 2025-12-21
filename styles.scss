@@ -672,6 +672,11 @@ section { padding: 5rem 0; }
     &.flagged {
         font-size: 20px;
     }
+
+    &.adjacent {
+        border-color: var(--primary-color);
+        border-width: 2px;
+    }
 }
 
 .game-over-message {
