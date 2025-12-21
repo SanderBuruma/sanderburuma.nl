@@ -131,7 +131,7 @@
                     React.createElement('ul', {
                         className: `nav-menu ${mobileMenuOpen ? 'active' : ''}`
                     },
-                        ['Home', 'About', 'Projects', 'Contact'].map(item => 
+                        ['Home', 'About', 'Experience', 'Projects', 'Contact'].map(item => 
                             React.createElement('li', { key: item, className: 'nav-item' },
                                 React.createElement('a', {
                                     href: `#${item.toLowerCase()}`,
@@ -257,6 +257,90 @@
             );
         };
         
+        const ExperienceSection = () => {
+            const experiences = [
+                {
+                    title: 'Python Developer',
+                    company: 'CitizenGO',
+                    location: 'Remote',
+                    period: 'Nov 2022 - Present',
+                    description: [
+                        'Developed Python Selenium end-to-end test environment for donation pipeline',
+                        'Implemented SQL monitoring of donation pipeline acceptance ratio and fraud detection',
+                        'Built AI project with Python Django for employee productivity reporting to management'
+                    ]
+                },
+                {
+                    title: 'Dotnet Developer',
+                    company: 'AWI bv',
+                    location: 'Netherlands',
+                    period: 'May 2022 - Nov 2022',
+                    description: [
+                        'Fixed bugs in decades-old C# legacy codebase with millions of lines of code',
+                        'Performed general refactoring and code improvements'
+                    ]
+                },
+                {
+                    title: 'Python Developer | Database Admin | Data Analyst',
+                    company: 'Civitas Christiana',
+                    location: 'Veenendaal',
+                    period: 'Feb 2021 - May 2022',
+                    description: [
+                        'Automated donation data input, saving 20 hours per week',
+                        'Implemented auto-correction of erroneous user input using Python',
+                        'Extracted data from legacy website using Python Selenium',
+                        'Implemented postcode checker in PHP, eliminating address errors',
+                        'Provided general IT support'
+                    ]
+                },
+                {
+                    title: 'Dotnet Developer',
+                    company: 'HRorganizer',
+                    location: 'Wageningen',
+                    period: 'Jan 2020 - Feb 2021',
+                    description: [
+                        'Converted 100,000+ lines of .NET code from synchronous to asynchronous',
+                        'Achieved 20% latency improvement',
+                        'Built personalization test in Angular (TypeScript) now in production use'
+                    ]
+                }
+            ];
+
+            return React.createElement('section', { id: 'experience', className: 'experience' },
+                React.createElement('div', { className: 'container' },
+                    React.createElement('h2', { className: 'section-title' }, 'Work Experience'),
+                    React.createElement('div', { className: 'experience-timeline' },
+                        experiences.map((exp, index) =>
+                            React.createElement('div', {
+                                key: index,
+                                className: 'experience-item'
+                            },
+                                React.createElement('div', { className: 'experience-content' },
+                                    React.createElement('div', { className: 'experience-header' },
+                                        React.createElement('div', null,
+                                            React.createElement('h3', null, exp.title),
+                                            React.createElement('h4', null, exp.company),
+                                            React.createElement('p', { className: 'experience-meta' },
+                                                React.createElement('i', { className: 'fas fa-map-marker-alt' }),
+                                                ` ${exp.location} | `,
+                                                React.createElement('i', { className: 'fas fa-calendar' }),
+                                                ` ${exp.period}`
+                                            )
+                                        )
+                                    ),
+                                    React.createElement('ul', { className: 'experience-description' },
+                                        exp.description.map((item, i) =>
+                                            React.createElement('li', { key: i }, item)
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
         const ProjectsSection = () => {
             const [filter, setFilter] = useState('all');
             const [searchTerm, setSearchTerm] = useState('');
@@ -561,6 +645,7 @@
                 React.createElement(Navbar),
                 React.createElement(HeroSection),
                 React.createElement(AboutSection),
+                React.createElement(ExperienceSection),
                 React.createElement(ProjectsSection),
                 React.createElement(ContactSection),
                 React.createElement(Footer)
