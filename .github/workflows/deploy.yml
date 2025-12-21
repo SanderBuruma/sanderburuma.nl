@@ -17,4 +17,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            /root/deploy.sh
+            cd /var/www/sanderburuma.nl
+            git config --global --add safe.directory /var/www/sanderburuma.nl
+            git pull origin main
+            bash deploy.sh
