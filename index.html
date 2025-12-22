@@ -678,6 +678,57 @@
                 return dx <= 1 && dy <= 1 && dz <= 1 && dw <= 1;
             };
 
+            const countAdjacentFlags = (board, x, y, z, w) => {
+                let count = 0;
+                for (let dw = -1; dw <= 1; dw++) {
+                    for (let dz = -1; dz <= 1; dz++) {
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue;
+
+                                const nw = w + dw;
+                                const nz = z + dz;
+                                const ny = y + dy;
+                                const nx = x + dx;
+
+                                if (nw >= 0 && nw < SIZE && nz >= 0 && nz < SIZE && ny >= 0 && ny < SIZE && nx >= 0 && nx < SIZE) {
+                                    if (board[nw][nz][ny][nx].isFlagged) {
+                                        count++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return count;
+            };
+
+            const countUnrevealedUnflagged = (board, x, y, z, w) => {
+                let count = 0;
+                for (let dw = -1; dw <= 1; dw++) {
+                    for (let dz = -1; dz <= 1; dz++) {
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue;
+
+                                const nw = w + dw;
+                                const nz = z + dz;
+                                const ny = y + dy;
+                                const nx = x + dx;
+
+                                if (nw >= 0 && nw < SIZE && nz >= 0 && nz < SIZE && ny >= 0 && ny < SIZE && nx >= 0 && nx < SIZE) {
+                                    const adjacentCell = board[nw][nz][ny][nx];
+                                    if (!adjacentCell.isRevealed && !adjacentCell.isFlagged) {
+                                        count++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return count;
+            };
+
             const renderBoard = () => {
                 if (!board.length) return null;
 
@@ -688,7 +739,26 @@
                                 board[w][z].map((row, y) =>
                                     row.map((cell, x) => {
                                         const isAdjacentToHovered = hoveredCell &&
+                                            !cell.isRevealed &&
+                                            !cell.isFlagged &&
                                             isAdjacent(x, y, z, w, hoveredCell.x, hoveredCell.y, hoveredCell.z, hoveredCell.w);
+
+                                        const adjacentFlagCount = countAdjacentFlags(board, x, y, z, w);
+                                        const adjustedMineCount = cell.adjacentMines - adjacentFlagCount;
+                                        const unrevealedUnflaggedCount = countUnrevealedUnflagged(board, x, y, z, w);
+
+                                        let cellContent = '';
+                                        if (cell.isFlagged) {
+                                            cellContent = '🚩';
+                                        } else if (cell.isRevealed && !cell.isMine) {
+                                            // If there are unrevealed, unflagged cells, always show the count
+                                            if (unrevealedUnflaggedCount > 0) {
+                                                cellContent = adjustedMineCount;
+                                            } else if (adjustedMineCount > 0) {
+                                                // Only show if positive when all adjacent cells are revealed or flagged
+                                                cellContent = adjustedMineCount;
+                                            }
+                                        }
 
                                         return React.createElement('div', {
                                             key: `${w}-${z}-${y}-${x}`,
@@ -697,7 +767,7 @@
                                             onContextMenu: (e) => handleFlag(e, x, y, z, w),
                                             onMouseEnter: () => setHoveredCell({ x, y, z, w }),
                                             onMouseLeave: () => setHoveredCell(null)
-                                        }, cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 ? cell.adjacentMines : (cell.isFlagged ? '🚩' : ''));
+                                        }, cellContent);
                                     })
                                 )
                             )
@@ -706,27 +776,95 @@
                 );
             };
 
+            const autoRevealAdjacent = (board, x, y, z, w) => {
+                // Check all adjacent cells
+                for (let dw = -1; dw <= 1; dw++) {
+                    for (let dz = -1; dz <= 1; dz++) {
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue;
+
+                                const nw = w + dw;
+                                const nz = z + dz;
+                                const ny = y + dy;
+                                const nx = x + dx;
+
+                                if (nw >= 0 && nw < SIZE && nz >= 0 && nz < SIZE && ny >= 0 && ny < SIZE && nx >= 0 && nx < SIZE) {
+                                    const adjacentCell = board[nw][nz][ny][nx];
+
+                                    // If this adjacent cell is revealed and has adjusted count of 0
+                                    if (adjacentCell.isRevealed && !adjacentCell.isMine) {
+                                        const flagCount = countAdjacentFlags(board, nx, ny, nz, nw);
+                                        const adjustedCount = adjacentCell.adjacentMines - flagCount;
+
+                                        if (adjustedCount === 0) {
+                                            // Reveal all unrevealed, unflagged neighbors
+                                            for (let dw2 = -1; dw2 <= 1; dw2++) {
+                                                for (let dz2 = -1; dz2 <= 1; dz2++) {
+                                                    for (let dy2 = -1; dy2 <= 1; dy2++) {
+                                                        for (let dx2 = -1; dx2 <= 1; dx2++) {
+                                                            if (dw2 === 0 && dz2 === 0 && dy2 === 0 && dx2 === 0) continue;
+
+                                                            const nnw = nw + dw2;
+                                                            const nnz = nz + dz2;
+                                                            const nny = ny + dy2;
+                                                            const nnx = nx + dx2;
+
+                                                            if (nnw >= 0 && nnw < SIZE && nnz >= 0 && nnz < SIZE && nny >= 0 && nny < SIZE && nnx >= 0 && nnx < SIZE) {
+                                                                const neighborCell = board[nnw][nnz][nny][nnx];
+                                                                if (!neighborCell.isRevealed && !neighborCell.isFlagged) {
+                                                                    revealCell(board, nnx, nny, nnz, nnw);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
             const handleFlag = (e, x, y, z, w) => {
                 e.preventDefault();
                 if (gameOver) return;
 
-                setBoard(prevBoard => {
-                    const newBoard = [...prevBoard];
-                    const newW = [...newBoard[w]];
-                    const newZ = [...newW[z]];
-                    const newY = [...newZ[y]];
-                    const newCell = { ...newY[x] };
+                const newBoard = board.map(arrW => arrW.map(arrZ => arrZ.map(arrY => arrY.map(cell => ({...cell})))));
 
-                    if (!newCell.isRevealed) {
-                        newCell.isFlagged = !newCell.isFlagged;
+                if (!newBoard[w][z][y][x].isRevealed) {
+                    newBoard[w][z][y][x].isFlagged = !newBoard[w][z][y][x].isFlagged;
+
+                    // Auto-reveal adjacent cells if any revealed neighbor now has adjusted count of 0
+                    autoRevealAdjacent(newBoard, x, y, z, w);
+
+                    // Check for mines that were revealed
+                    let hitMine = false;
+                    for (let tw = 0; tw < SIZE && !hitMine; tw++) {
+                        for (let tz = 0; tz < SIZE && !hitMine; tz++) {
+                            for (let ty = 0; ty < SIZE && !hitMine; ty++) {
+                                for (let tx = 0; tx < SIZE && !hitMine; tx++) {
+                                    if (newBoard[tw][tz][ty][tx].isMine && newBoard[tw][tz][ty][tx].isRevealed) {
+                                        hitMine = true;
+                                        setGameOver(true);
+                                        revealAllMines(newBoard);
+                                    }
+                                }
+                            }
+                        }
                     }
 
-                    newY[x] = newCell;
-                    newZ[y] = newY;
-                    newW[z] = newZ;
-                    newBoard[w] = newW;
-                    return newBoard;
-                });
+                    // Check for win condition if no mine was hit
+                    if (!hitMine && checkWinCondition(newBoard)) {
+                        setWin(true);
+                        setGameOver(true);
+                    }
+                }
+
+                setBoard(newBoard);
             };
 
             const handleCellClick = (x, y, z, w) => {
