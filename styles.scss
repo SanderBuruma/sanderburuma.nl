@@ -660,6 +660,7 @@ section { padding: 5rem 0; }
     font-weight: bold;
     cursor: pointer;
     @include transition(background-color, .2s);
+    user-select: none;
 
     &.revealed {
         background: var(--bg-secondary);
@@ -676,6 +677,11 @@ section { padding: 5rem 0; }
     &.adjacent {
         border-color: var(--primary-color);
         border-width: 2px;
+    }
+
+    &.drag-selected {
+        background: var(--primary-color);
+        opacity: 0.5;
     }
 }
 

@@ -596,6 +596,7 @@
             const [win, setWin] = useState(false);
             const [hoveredCell, setHoveredCell] = useState(null);
             const [dragStart, setDragStart] = useState(null);
+            const [dragCurrent, setDragCurrent] = useState(null);
             const [isDragging, setIsDragging] = useState(false);
             const justDraggedRef = useRef(false);
 
@@ -610,6 +611,7 @@
                 const handleGlobalMouseUp = () => {
                     if (isDragging) {
                         setDragStart(null);
+                        setDragCurrent(null);
                         setIsDragging(false);
                     }
                 };
@@ -749,12 +751,14 @@
             const handleMouseDown = (x, y, z, w) => {
                 if (gameOver) return;
                 setDragStart({ x, y, z, w });
+                setDragCurrent({ x, y, z, w });
                 setIsDragging(true);
             };
 
             const handleMouseUp = (x, y, z, w) => {
                 if (!isDragging || !dragStart || gameOver) {
                     setDragStart(null);
+                    setDragCurrent(null);
                     setIsDragging(false);
                     return;
                 }
@@ -810,6 +814,7 @@
                 }
 
                 setDragStart(null);
+                setDragCurrent(null);
                 setIsDragging(false);
             };
 
@@ -826,6 +831,19 @@
                                             !cell.isRevealed &&
                                             !cell.isFlagged &&
                                             isAdjacent(x, y, z, w, hoveredCell.x, hoveredCell.y, hoveredCell.z, hoveredCell.w);
+
+                                        // Check if cell is in drag selection
+                                        const isInDragSelection = isDragging && dragStart && dragCurrent &&
+                                            !cell.isFlagged &&
+                                            !cell.isRevealed &&
+                                            x >= Math.min(dragStart.x, dragCurrent.x) &&
+                                            x <= Math.max(dragStart.x, dragCurrent.x) &&
+                                            y >= Math.min(dragStart.y, dragCurrent.y) &&
+                                            y <= Math.max(dragStart.y, dragCurrent.y) &&
+                                            z >= Math.min(dragStart.z, dragCurrent.z) &&
+                                            z <= Math.max(dragStart.z, dragCurrent.z) &&
+                                            w >= Math.min(dragStart.w, dragCurrent.w) &&
+                                            w <= Math.max(dragStart.w, dragCurrent.w);
 
                                         const adjacentFlagCount = countAdjacentFlags(board, x, y, z, w);
                                         const adjustedMineCount = cell.adjacentMines - adjacentFlagCount;
@@ -846,7 +864,7 @@
 
                                         return React.createElement('div', {
                                             key: `${w}-${z}-${y}-${x}`,
-                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''}`,
+                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''} ${isInDragSelection ? 'drag-selected' : ''}`,
                                             onClick: () => {
                                                 if (!justDraggedRef.current) {
                                                     handleCellClick(x, y, z, w);
@@ -855,7 +873,12 @@
                                             onContextMenu: (e) => handleFlag(e, x, y, z, w),
                                             onMouseDown: () => handleMouseDown(x, y, z, w),
                                             onMouseUp: () => handleMouseUp(x, y, z, w),
-                                            onMouseEnter: () => setHoveredCell({ x, y, z, w }),
+                                            onMouseEnter: () => {
+                                                setHoveredCell({ x, y, z, w });
+                                                if (isDragging) {
+                                                    setDragCurrent({ x, y, z, w });
+                                                }
+                                            },
                                             onMouseLeave: () => setHoveredCell(null)
                                         }, cellContent);
                                     })
