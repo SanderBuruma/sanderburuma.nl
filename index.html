@@ -595,6 +595,9 @@
             const [gameOver, setGameOver] = useState(false);
             const [win, setWin] = useState(false);
             const [hoveredCell, setHoveredCell] = useState(null);
+            const [dragStart, setDragStart] = useState(null);
+            const [isDragging, setIsDragging] = useState(false);
+            const justDraggedRef = useRef(false);
 
             const SIZE = 4;
             const MINES = 20;
@@ -602,6 +605,20 @@
             useEffect(() => {
                 setBoard(createBoard());
             }, []);
+
+            useEffect(() => {
+                const handleGlobalMouseUp = () => {
+                    if (isDragging) {
+                        setDragStart(null);
+                        setIsDragging(false);
+                    }
+                };
+
+                document.addEventListener('mouseup', handleGlobalMouseUp);
+                return () => {
+                    document.removeEventListener('mouseup', handleGlobalMouseUp);
+                };
+            }, [isDragging]);
 
             const createBoard = () => {
                 let newBoard = Array(SIZE).fill(0).map(() =>
@@ -729,6 +746,73 @@
                 return count;
             };
 
+            const handleMouseDown = (x, y, z, w) => {
+                if (gameOver) return;
+                setDragStart({ x, y, z, w });
+                setIsDragging(true);
+            };
+
+            const handleMouseUp = (x, y, z, w) => {
+                if (!isDragging || !dragStart || gameOver) {
+                    setDragStart(null);
+                    setIsDragging(false);
+                    return;
+                }
+
+                // Check if we actually dragged to a different cell
+                const isDifferentCell = dragStart.x !== x || dragStart.y !== y || dragStart.z !== z || dragStart.w !== w;
+
+                if (isDifferentCell) {
+                    justDraggedRef.current = true;
+                    setTimeout(() => {
+                        justDraggedRef.current = false;
+                    }, 100);
+
+                    const newBoard = board.map(arrW => arrW.map(arrZ => arrZ.map(arrY => arrY.map(cell => ({...cell})))));
+
+                    // Calculate the bounds of the 4D hyperrectangle
+                    const minX = Math.min(dragStart.x, x);
+                    const maxX = Math.max(dragStart.x, x);
+                    const minY = Math.min(dragStart.y, y);
+                    const maxY = Math.max(dragStart.y, y);
+                    const minZ = Math.min(dragStart.z, z);
+                    const maxZ = Math.max(dragStart.z, z);
+                    const minW = Math.min(dragStart.w, w);
+                    const maxW = Math.max(dragStart.w, w);
+
+                    // Reveal all unflagged cells in the hyperrectangle
+                    let hitMine = false;
+                    for (let tw = minW; tw <= maxW; tw++) {
+                        for (let tz = minZ; tz <= maxZ; tz++) {
+                            for (let ty = minY; ty <= maxY; ty++) {
+                                for (let tx = minX; tx <= maxX; tx++) {
+                                    const cell = newBoard[tw][tz][ty][tx];
+                                    if (!cell.isFlagged && !cell.isRevealed) {
+                                        revealCell(newBoard, tx, ty, tz, tw);
+                                        if (cell.isMine) {
+                                            hitMine = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (hitMine) {
+                        setGameOver(true);
+                        revealAllMines(newBoard);
+                    } else if (checkWinCondition(newBoard)) {
+                        setWin(true);
+                        setGameOver(true);
+                    }
+
+                    setBoard(newBoard);
+                }
+
+                setDragStart(null);
+                setIsDragging(false);
+            };
+
             const renderBoard = () => {
                 if (!board.length) return null;
 
@@ -763,8 +847,14 @@
                                         return React.createElement('div', {
                                             key: `${w}-${z}-${y}-${x}`,
                                             className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''}`,
-                                            onClick: () => handleCellClick(x, y, z, w),
+                                            onClick: () => {
+                                                if (!justDraggedRef.current) {
+                                                    handleCellClick(x, y, z, w);
+                                                }
+                                            },
                                             onContextMenu: (e) => handleFlag(e, x, y, z, w),
+                                            onMouseDown: () => handleMouseDown(x, y, z, w),
+                                            onMouseUp: () => handleMouseUp(x, y, z, w),
                                             onMouseEnter: () => setHoveredCell({ x, y, z, w }),
                                             onMouseLeave: () => setHoveredCell(null)
                                         }, cellContent);
