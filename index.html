@@ -808,6 +808,7 @@
                     } else if (checkWinCondition(newBoard)) {
                         setWin(true);
                         setGameOver(true);
+                        revealAllMines(newBoard);
                     }
 
                     setBoard(newBoard);
@@ -864,7 +865,7 @@
 
                                         return React.createElement('div', {
                                             key: `${w}-${z}-${y}-${x}`,
-                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? 'mine' : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''} ${isInDragSelection ? 'drag-selected' : ''}`,
+                                            className: `cell ${cell.isRevealed ? 'revealed' : ''} ${cell.isMine && gameOver ? (win ? 'mine-win' : 'mine') : ''} ${cell.isFlagged ? 'flagged' : ''} ${isAdjacentToHovered ? 'adjacent' : ''} ${isInDragSelection ? 'drag-selected' : ''}`,
                                             onClick: () => {
                                                 if (!justDraggedRef.current) {
                                                     handleCellClick(x, y, z, w);
@@ -974,6 +975,7 @@
                     if (!hitMine && checkWinCondition(newBoard)) {
                         setWin(true);
                         setGameOver(true);
+                        revealAllMines(newBoard);
                     }
                 }
 
@@ -995,6 +997,7 @@
                         if (checkWinCondition(newBoard)) {
                             setWin(true);
                             setGameOver(true);
+                            revealAllMines(newBoard);
                         }
                     }
                     setBoard(newBoard);
@@ -1011,6 +1014,7 @@
                     if (checkWinCondition(newBoard)) {
                         setWin(true);
                         setGameOver(true);
+                        revealAllMines(newBoard);
                     }
                 }
                 setBoard(newBoard);

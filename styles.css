@@ -543,6 +543,9 @@ section {
 .cell.mine {
   background: #ff6b6b;
 }
+.cell.mine-win {
+  background: #51cf66;
+}
 .cell.flagged {
   font-size: 20px;
 }
