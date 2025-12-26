@@ -1,0 +1,32 @@
+{
+  "name": "sanderburuma.nl",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SanderBuruma/sanderburuma.nl.git"
+  },
+  "keywords": ["portfolio", "react", "software-developer", "netherlands"],
+  "author": "Sander Buruma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SanderBuruma/sanderburuma.nl/issues"
+  },
+  "homepage": "https://github.com/SanderBuruma/sanderburuma.nl#readme",
+  "description": "Portfolio website of Sander Buruma - Software Developer",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "react-icons": "^5.5.0",
+    "sass": "^1.97.1",
+    "vite": "^7.3.0"
+  }
+}
