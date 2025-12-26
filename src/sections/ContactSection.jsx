@@ -9,7 +9,7 @@ const ContactSection = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!formData.name || !formData.email || !formData.message) {
@@ -25,11 +25,36 @@ const ContactSection = () => {
 
     setIsSubmitting(true)
 
-    setTimeout(() => {
-      alert('Thank you for your message! I\'ll get back to you soon.')
-      setFormData({ name: '', email: '', message: '' })
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'cf0434f9-44f0-46ba-ac53-978c15bbb240',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Contact Form Message from ${formData.name}`
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        alert('Thank you for your message! I\'ll get back to you soon.')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        alert('Something went wrong. Please try again or email me directly at info@sanderburuma.nl')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      alert('Something went wrong. Please try again or email me directly at info@sanderburuma.nl')
+    } finally {
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   const handleChange = (e) => {
