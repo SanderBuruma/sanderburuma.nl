@@ -86,7 +86,7 @@ const ContactSection = () => {
                 <a
                   href="https://github.com/sanderburuma"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   github.com/sanderburuma
                 </a>
@@ -96,7 +96,7 @@ const ContactSection = () => {
                 <a
                   href="https://www.linkedin.com/in/sander-buruma-729a84235"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   linkedin.com/in/sander-buruma
                 </a>

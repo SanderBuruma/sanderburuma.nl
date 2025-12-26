@@ -44,7 +44,7 @@ const HeroSection = () => {
         </div>
         <div className="hero-image">
           <div className="floating-card">
-            <FaCode />
+            <FaCode aria-hidden="true" />
           </div>
         </div>
       </div>

@@ -42,14 +42,16 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div
+        <button
           className={`nav-toggle ${mobileMenuOpen ? 'active' : ''}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
         >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
-        </div>
+        </button>
         <button
           className="theme-toggle"
           onClick={() => dispatch({ type: 'TOGGLE_THEME' })}
