@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
+import { SiSignal } from 'react-icons/si'
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -99,6 +100,16 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                 >
                   linkedin.com/in/sander-buruma
+                </a>
+              </div>
+              <div className="contact-item">
+                <SiSignal aria-hidden="true" />
+                <a
+                  href="https://signal.me/#eu/V29V5cqjQfOqIDIFY6k909ZQtZ86-ygr1q1OH_lJBN1q031LAGVIz5nDn0-7k4y7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  signal.me/cubit32.68
                 </a>
               </div>
             </div>
