@@ -863,6 +863,136 @@ section { padding: 5rem 0; }
     }
 }
 
+// 4D Snake
+.snake4d-section {
+    background: var(--bg-secondary);
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $gap-default;
+    }
+
+    h2 {
+        @extend .section-title;
+    }
+}
+
+.game-info {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    .score {
+        color: var(--primary-color);
+    }
+
+    .status {
+        color: var(--text-secondary);
+    }
+}
+
+.controls-info {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background: var(--bg-primary);
+    padding: 1rem 2rem;
+    border-radius: $border-radius-sm;
+    border: 2px solid var(--border-color);
+
+    .control-group {
+        font-size: .9rem;
+        color: var(--text-secondary);
+
+        strong {
+            color: var(--primary-color);
+            margin-right: .5rem;
+        }
+    }
+}
+
+.snake-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: .75rem;
+    max-width: 900px;
+}
+
+.snake-subgrid {
+    display: flex;
+    flex-direction: column;
+
+    &.active .snake-grid-inner {
+        outline: 2px solid var(--primary-color);
+        outline-offset: -1px;
+        box-shadow: 0 0 8px var(--primary-color);
+    }
+
+    &.active.dead .snake-grid-inner {
+        outline-color: #ff6b6b;
+        box-shadow: 0 0 8px #ff6b6b;
+    }
+}
+
+.snake-grid-inner {
+    display: grid;
+    grid-template-columns: repeat(6, 12px);
+    grid-template-rows: repeat(6, 12px);
+    gap: 1px;
+    background: var(--border-color);
+    padding: 2px;
+    border-radius: $border-radius-sm;
+}
+
+.snake-cell {
+    width: 12px;
+    height: 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    @include flex-center;
+    font-size: 10px;
+    user-select: none;
+    @include transition(background-color, .15s);
+
+    &.head {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    &.body {
+        background: #9c9ff5; // Lightened version of #6366f1
+        color: white;
+    }
+
+    &.food {
+        background: var(--bg-primary);
+    }
+
+    &.dead {
+        background: #ff6b6b !important;
+    }
+}
+
+.reset-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: .75rem 2rem;
+    border-radius: $border-radius-sm;
+    font: {
+        weight: 600;
+        size: 1rem;
+    }
+    cursor: pointer;
+    @include transition(background-color);
+
+    &:hover {
+        background: var(--primary-dark);
+    }
+}
+
 // Responsive - Consolidated
 @media (max-width: 768px) {
     .nav {

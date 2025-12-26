@@ -7,6 +7,7 @@ import AboutSection from './sections/AboutSection'
 import ExperienceSection from './sections/ExperienceSection'
 import ProjectsSection from './sections/ProjectsSection'
 import MinesweeperSection from './sections/MinesweeperSection'
+import Snake4DSection from './sections/Snake4DSection'
 import ContactSection from './sections/ContactSection'
 
 const AppContent = () => {
@@ -74,6 +75,7 @@ const AppContent = () => {
       <ExperienceSection />
       <ProjectsSection />
       <MinesweeperSection />
+      <Snake4DSection />
       <ContactSection />
       <Footer />
     </div>
