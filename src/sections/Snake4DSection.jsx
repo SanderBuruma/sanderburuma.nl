@@ -205,7 +205,7 @@ const Snake4DSection = () => {
   }
 
   return (
-    <section id="snake4d" className="snake4d-section">
+    <section id="snake" className="snake4d-section">
       <div className="container">
         <h2>4D Snake</h2>
 

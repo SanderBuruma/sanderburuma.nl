@@ -30,7 +30,7 @@ const Navbar = () => {
           <h2>Sander Buruma</h2>
         </div>
         <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
-          {['Home', 'About', 'Experience', 'Projects', 'Minesweeper', 'Contact'].map(item => (
+          {['Home', 'About', 'Experience', 'Projects', 'Minesweeper', 'Snake', 'Contact'].map(item => (
             <li key={item} className="nav-item">
               <a
                 href={`#${item.toLowerCase()}`}
