@@ -30,14 +30,22 @@ const Navbar = () => {
           <h2>Sander Buruma</h2>
         </div>
         <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
-          {['Home', 'About', 'Experience', 'Projects', 'Minesweeper', 'Snake', 'Contact'].map(item => (
-            <li key={item} className="nav-item">
+          {[
+            { label: 'Home', id: 'home' },
+            { label: 'About', id: 'about' },
+            { label: 'Experience', id: 'experience' },
+            { label: 'Projects', id: 'projects' },
+            { label: '4D Minesweeper', id: 'minesweeper' },
+            { label: '4D Snake', id: 'snake' },
+            { label: 'Contact', id: 'contact' }
+          ].map(item => (
+            <li key={item.id} className="nav-item">
               <a
-                href={`#${item.toLowerCase()}`}
+                href={`#${item.id}`}
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             </li>
           ))}

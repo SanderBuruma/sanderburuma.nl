@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 
-const SIZE = 6 // 6x6x6x6 grid
+const SIZE = 4 // 4x4x4x4 grid
 
 const Snake4DSection = () => {
-  const [snake, setSnake] = useState([{ x: 3, y: 3, z: 3, w: 3 }]) // Start in center
+  const [snake, setSnake] = useState([{ x: 2, y: 2, z: 2, w: 2 }]) // Start in center
   const [food, setFood] = useState(null)
   const [direction, setDirection] = useState({ dx: 1, dy: 0, dz: 0, dw: 0 }) // Moving right initially
   const [gameOver, setGameOver] = useState(false)
@@ -204,6 +204,23 @@ const Snake4DSection = () => {
     return null
   }
 
+  // Generate color based on XY coordinates
+  // Y determines base color (0-3), X determines lightness (0-3, dark to light)
+  const getColorFromXY = (x, y) => {
+    const baseColors = [
+      { h: 120, s: 60 }, // Y=0: green
+      { h: 220, s: 70 }, // Y=1: blue
+      { h: 270, s: 60 }, // Y=2: purple
+      { h: 0, s: 70 }    // Y=3: red
+    ]
+
+    const color = baseColors[y]
+    // X determines lightness: 0 is dark (30%), 3 is light (60%)
+    const lightness = 30 + (x * 10) // Range from 30% to 60%
+
+    return `hsl(${color.h}, ${color.s}%, ${lightness}%)`
+  }
+
   return (
     <section id="snake" className="snake4d-section">
       <div className="container">
@@ -228,7 +245,7 @@ const Snake4DSection = () => {
           </div>
         </div>
 
-        {/* 6x6 grid of 6x6 grids (W and Z on outer grid, Y and X on inner grids) */}
+        {/* 4x4 grid of 4x4 grids (W and Z on outer grid, Y and X on inner grids) */}
         <div className="grid-of-grids snake-grid">
           {Array.from({ length: SIZE }, (_, w) =>
             Array.from({ length: SIZE }, (_, z) => {
@@ -239,10 +256,13 @@ const Snake4DSection = () => {
                   {Array.from({ length: SIZE }, (_, y) =>
                     Array.from({ length: SIZE }, (_, x) => {
                       const content = getCellContent(x, y, z, w)
+                      const isSnake = content === 'head' || content === 'body'
+                      const cellStyle = isSnake && !gameOver ? { backgroundColor: getColorFromXY(x, y) } : {}
                       return (
                         <div
                           key={`${w}-${z}-${y}-${x}`}
-                          className={`snake-cell ${content || ''} ${gameOver && (content === 'head' || content === 'body') ? 'dead' : ''}`}
+                          className={`snake-cell ${content || ''} ${gameOver && isSnake ? 'dead' : ''}`}
+                          style={cellStyle}
                         >
                           {content === 'head' && '●'}
                           {content === 'body' && '○'}
