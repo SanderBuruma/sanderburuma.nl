@@ -27,7 +27,7 @@ const themeReducer = (state, action) => {
 // Theme Provider Component
 export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(themeReducer, {
-    isDark: localStorage.getItem('theme') === 'dark'
+    isDark: localStorage.getItem('theme') !== 'light'
   })
 
   useEffect(() => {
