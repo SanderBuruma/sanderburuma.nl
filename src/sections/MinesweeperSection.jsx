@@ -1,5 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
 
+// Cookie helper functions
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+  return null
+}
+
+const setCookie = (name, value, days = 365) => {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString()
+  document.cookie = `${name}=${value}; expires=${expires}; path=/`
+}
+
 const Minesweeper4D = () => {
   const [board, setBoard] = useState([])
   const [gameOver, setGameOver] = useState(false)
@@ -11,7 +24,12 @@ const Minesweeper4D = () => {
   const justDraggedRef = useRef(false)
 
   const SIZE = 4
-  const MINES = 20
+
+  // Initialize mines from cookie or default to 20
+  const [mines, setMines] = useState(() => {
+    const savedMines = getCookie('minesweeper4d_mines')
+    return savedMines ? parseInt(savedMines, 10) : 20
+  })
 
   useEffect(() => {
     setBoard(createBoard())
@@ -32,6 +50,27 @@ const Minesweeper4D = () => {
     }
   }, [isDragging])
 
+  // Handle difficulty progression when game ends
+  useEffect(() => {
+    if (gameOver) {
+      if (win) {
+        // Player won - increase difficulty
+        let newMines
+        if (mines < 30) {
+          newMines = mines + 2
+        } else {
+          newMines = mines + 1
+        }
+        setMines(newMines)
+        setCookie('minesweeper4d_mines', newMines)
+      } else {
+        // Player lost - reset to 20
+        setMines(20)
+        setCookie('minesweeper4d_mines', 20)
+      }
+    }
+  }, [gameOver, win])
+
   const createBoard = () => {
     let newBoard = Array(SIZE).fill(0).map(() =>
       Array(SIZE).fill(0).map(() =>
@@ -47,7 +86,7 @@ const Minesweeper4D = () => {
     )
 
     let minesPlaced = 0
-    while (minesPlaced < MINES) {
+    while (minesPlaced < mines) {
       const x = Math.floor(Math.random() * SIZE)
       const y = Math.floor(Math.random() * SIZE)
       const z = Math.floor(Math.random() * SIZE)
@@ -70,6 +109,27 @@ const Minesweeper4D = () => {
         }
       }
     }
+
+    // Find all cells with 0 adjacent mines
+    const zeroCells = []
+    for (let w = 0; w < SIZE; w++) {
+      for (let z = 0; z < SIZE; z++) {
+        for (let y = 0; y < SIZE; y++) {
+          for (let x = 0; x < SIZE; x++) {
+            if (!newBoard[w][z][y][x].isMine && newBoard[w][z][y][x].adjacentMines === 0) {
+              zeroCells.push({ x, y, z, w })
+            }
+          }
+        }
+      }
+    }
+
+    // Automatically reveal a random zero cell to start the game
+    if (zeroCells.length > 0) {
+      const randomZero = zeroCells[Math.floor(Math.random() * zeroCells.length)]
+      revealCell(newBoard, randomZero.x, randomZero.y, randomZero.z, randomZero.w)
+    }
+
     return newBoard
   }
 
@@ -443,11 +503,11 @@ const Minesweeper4D = () => {
     if (x < 0 || x >= SIZE || y < 0 || y >= SIZE || z < 0 || z >= SIZE || w < 0 || w >= SIZE) return
 
     const cell = board[w][z][y][x]
-    if (cell.isRevealed) return
+    if (cell.isRevealed || cell.isFlagged || cell.isMine) return
 
     cell.isRevealed = true
 
-    if (cell.adjacentMines === 0 && !cell.isMine) {
+    if (cell.adjacentMines === 0) {
       for (let dw = -1; dw <= 1; dw++) {
         for (let dz = -1; dz <= 1; dz++) {
           for (let dy = -1; dy <= 1; dy++) {
@@ -478,9 +538,10 @@ const Minesweeper4D = () => {
   return (
     <div className="minesweeper-container">
       <h2 className="section-title">4D Minesweeper</h2>
+      <div className="mines-count">Mines: {mines}</div>
       {renderBoard()}
-      {win && <div className="game-over-message">You Win!</div>}
-      {gameOver && !win && <div className="game-over-message">Game Over</div>}
+      {win && <div className="game-over-message">You Win! Next: {mines < 30 ? mines + 2 : mines + 1} mines</div>}
+      {gameOver && !win && <div className="game-over-message">Game Over - Reset to 20 mines</div>}
       <button
         className="btn btn-primary"
         onClick={() => {
