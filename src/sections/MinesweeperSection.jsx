@@ -467,6 +467,11 @@ const Minesweeper4D = () => {
       return
     }
 
+    // Don't reveal flagged cells
+    if (board[w][z][y][x].isFlagged) {
+      return
+    }
+
     let newBoard = board.map(arrW => arrW.map(arrZ => arrZ.map(arrY => arrY.map(cell => ({ ...cell })))))
 
     if (newBoard[w][z][y][x].isMine) {
