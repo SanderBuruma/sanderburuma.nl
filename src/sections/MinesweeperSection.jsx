@@ -545,7 +545,7 @@ const Minesweeper4D = () => {
       <h2 className="section-title">4D Minesweeper</h2>
       <div className="mines-count">Mines: {mines}</div>
       {renderBoard()}
-      {win && <div className="game-over-message">You Win! Next: {mines < 30 ? mines + 2 : mines + 1} mines</div>}
+      {win && <div className="game-over-message">You Win! Next: {mines} mines</div>}
       {gameOver && !win && <div className="game-over-message">Game Over - Reset to 20 mines</div>}
       <button
         className="btn btn-primary"
