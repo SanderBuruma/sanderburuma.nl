@@ -1176,3 +1176,13 @@ section { padding: 5rem 0; }
         text-decoration: underline;
     }
 }
+
+// Route Transitions
+.route-transition {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.route-transition.transitioning {
+    opacity: 0;
+}
