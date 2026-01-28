@@ -42,10 +42,12 @@ Pre-GSD implementation, no detailed phase breakdown available.
   3. User can use browser back/forward buttons between blog and portfolio
   4. User can click navigation links to return to portfolio from blog
   5. Direct links to blog URLs work on deployed site (no 404 errors)
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 06-01: [TBD during plan-phase]
+- [ ] 06-01-PLAN.md — Install React Router and create router structure
+- [ ] 06-02-PLAN.md — Update navigation (Navbar + BlogNavbar)
+- [ ] 06-03-PLAN.md — Blog page shells, transitions, and verification
 
 #### Phase 7: Markdown Infrastructure
 **Goal**: Markdown files load correctly with metadata extracted
@@ -142,7 +144,7 @@ Phases execute in numeric order: 6 → 7 → 8 → 9 → 10 → 11 → 12
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 6. Routing Foundation | v1.1 | 0/? | Not started | - |
+| 6. Routing Foundation | v1.1 | 0/3 | Planned | - |
 | 7. Markdown Infrastructure | v1.1 | 0/? | Not started | - |
 | 8. Blog Index Page | v1.1 | 0/? | Not started | - |
 | 9. Markdown Rendering | v1.1 | 0/? | Not started | - |
