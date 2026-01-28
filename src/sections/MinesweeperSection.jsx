@@ -252,17 +252,31 @@ const Minesweeper4D = () => {
       const minW = Math.min(dragStart.w, w)
       const maxW = Math.max(dragStart.w, w)
 
-      let hitMine = false
       for (let tw = minW; tw <= maxW; tw++) {
         for (let tz = minZ; tz <= maxZ; tz++) {
           for (let ty = minY; ty <= maxY; ty++) {
             for (let tx = minX; tx <= maxX; tx++) {
               const cell = newBoard[tw][tz][ty][tx]
               if (!cell.isFlagged && !cell.isRevealed) {
-                revealCell(newBoard, tx, ty, tz, tw)
                 if (cell.isMine) {
-                  hitMine = true
+                  cell.isRevealed = true // Directly reveal selected mines
+                } else {
+                  revealCell(newBoard, tx, ty, tz, tw)
                 }
+              }
+            }
+          }
+        }
+      }
+
+      // Check if any mine was revealed (directly or via auto-reveal from wrong flags)
+      let hitMine = false
+      for (let tw = 0; tw < SIZE && !hitMine; tw++) {
+        for (let tz = 0; tz < SIZE && !hitMine; tz++) {
+          for (let ty = 0; ty < SIZE && !hitMine; ty++) {
+            for (let tx = 0; tx < SIZE && !hitMine; tx++) {
+              if (newBoard[tw][tz][ty][tx].isMine && newBoard[tw][tz][ty][tx].isRevealed) {
+                hitMine = true
               }
             }
           }
@@ -479,7 +493,25 @@ const Minesweeper4D = () => {
       revealAllMines(newBoard)
     } else {
       revealCell(newBoard, x, y, z, w)
-      if (checkWinCondition(newBoard)) {
+
+      // Check if any mine was revealed (can happen due to auto-reveal with wrong flags)
+      let hitMine = false
+      for (let tw = 0; tw < SIZE && !hitMine; tw++) {
+        for (let tz = 0; tz < SIZE && !hitMine; tz++) {
+          for (let ty = 0; ty < SIZE && !hitMine; ty++) {
+            for (let tx = 0; tx < SIZE && !hitMine; tx++) {
+              if (newBoard[tw][tz][ty][tx].isMine && newBoard[tw][tz][ty][tx].isRevealed) {
+                hitMine = true
+              }
+            }
+          }
+        }
+      }
+
+      if (hitMine) {
+        setGameOver(true)
+        revealAllMines(newBoard)
+      } else if (checkWinCondition(newBoard)) {
         setWin(true)
         setGameOver(true)
         revealAllMines(newBoard)
@@ -504,21 +536,29 @@ const Minesweeper4D = () => {
     return true
   }
 
-  const revealCell = (board, x, y, z, w) => {
+  const revealCell = (board, x, y, z, w, forceRevealMines = false) => {
     if (x < 0 || x >= SIZE || y < 0 || y >= SIZE || z < 0 || z >= SIZE || w < 0 || w >= SIZE) return
 
     const cell = board[w][z][y][x]
-    if (cell.isRevealed || cell.isFlagged || cell.isMine) return
+    if (cell.isRevealed || cell.isFlagged) return
+    if (cell.isMine && !forceRevealMines) return
 
     cell.isRevealed = true
 
-    if (cell.adjacentMines === 0) {
+    // Calculate adjusted mine count (actual mines - adjacent flags)
+    const adjacentFlags = countAdjacentFlags(board, x, y, z, w)
+    const adjustedMineCount = cell.adjacentMines - adjacentFlags
+
+    // Auto-reveal neighbors if displayed count is 0 (even if due to flags)
+    // When flags cause the 0, force-reveal mines to trigger game over on wrong flags
+    if (adjustedMineCount <= 0) {
+      const shouldForceRevealMines = adjacentFlags > 0 // Wrong flags can cause game over
       for (let dw = -1; dw <= 1; dw++) {
         for (let dz = -1; dz <= 1; dz++) {
           for (let dy = -1; dy <= 1; dy++) {
             for (let dx = -1; dx <= 1; dx++) {
               if (dw === 0 && dz === 0 && dy === 0 && dx === 0) continue
-              revealCell(board, x + dx, y + dy, z + dz, w + dw)
+              revealCell(board, x + dx, y + dy, z + dz, w + dw, shouldForceRevealMines)
             }
           }
         }
