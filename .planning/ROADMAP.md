@@ -65,7 +65,7 @@ Plans:
 Plans:
 - [x] 07-01-PLAN.md -- Vite blog manifest plugin with frontmatter parsing and validation
 
-#### Phase 8: Blog Index Page
+#### Phase 8: Blog Index Page -- COMPLETE
 **Goal**: Users can browse and filter blog posts
 **Depends on**: Phase 7
 **Requirements**: BLOG-01, BLOG-03, BLOG-07, TAGS-01, TAGS-02, TAGS-03
@@ -76,9 +76,10 @@ Plans:
   4. User can view filtered posts at /blog?tag=X
   5. Blog index is responsive on mobile devices
 **Plans:** 1 plan
+**Completed:** 2026-01-28
 
 Plans:
-- [ ] 08-01-PLAN.md -- Blog index page with post cards, tag filtering, and pagination
+- [x] 08-01-PLAN.md -- Blog index page with post cards, tag filtering, and pagination
 
 #### Phase 9: Markdown Rendering
 **Goal**: Users can read full blog posts with rich markdown content
@@ -148,7 +149,7 @@ Phases execute in numeric order: 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 |-------|-----------|----------------|--------|-----------|
 | 6. Routing Foundation | v1.1 | 3/3 | Complete | 2026-01-28 |
 | 7. Markdown Infrastructure | v1.1 | 1/1 | Complete | 2026-01-28 |
-| 8. Blog Index Page | v1.1 | 0/1 | Not started | - |
+| 8. Blog Index Page | v1.1 | 1/1 | Complete | 2026-01-28 |
 | 9. Markdown Rendering | v1.1 | 0/? | Not started | - |
 | 10. SEO & Metadata | v1.1 | 0/? | Not started | - |
 | 11. RSS & Feeds | v1.1 | 0/? | Not started | - |

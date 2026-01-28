@@ -16,13 +16,13 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### Blog Content
 
-- [ ] **BLOG-01**: User can view list of all blog posts on /blog page
+- [x] **BLOG-01**: User can view list of all blog posts on /blog page
 - [ ] **BLOG-02**: User can read individual blog post with full markdown content
-- [ ] **BLOG-03**: User can see publish date on each post
+- [x] **BLOG-03**: User can see publish date on each post
 - [ ] **BLOG-04**: User can see author information on each post
 - [ ] **BLOG-05**: User can see featured image at top of post
 - [ ] **BLOG-06**: User can see reading time estimate for each post
-- [ ] **BLOG-07**: Blog layout is responsive on mobile devices
+- [x] **BLOG-07**: Blog layout is responsive on mobile devices
 
 ### Markdown
 
@@ -33,9 +33,9 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### Tags
 
-- [ ] **TAGS-01**: User can see tags displayed on each post
-- [ ] **TAGS-02**: User can filter posts by clicking a tag
-- [ ] **TAGS-03**: User can see all posts with a specific tag on /blog?tag=X
+- [x] **TAGS-01**: User can see tags displayed on each post
+- [x] **TAGS-02**: User can filter posts by clicking a tag
+- [x] **TAGS-03**: User can see all posts with a specific tag (client-side filtering)
 
 ### SEO & Sharing
 
@@ -94,20 +94,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ROUT-02 | Phase 6 | Complete |
 | ROUT-03 | Phase 6 | Complete |
 | ROUT-04 | Phase 6 | Complete |
-| BLOG-01 | Phase 8 | Pending |
+| BLOG-01 | Phase 8 | Complete |
 | BLOG-02 | Phase 9 | Pending |
-| BLOG-03 | Phase 8 | Pending |
+| BLOG-03 | Phase 8 | Complete |
 | BLOG-04 | Phase 9 | Pending |
 | BLOG-05 | Phase 9 | Pending |
 | BLOG-06 | Phase 9 | Pending |
-| BLOG-07 | Phase 8 | Pending |
+| BLOG-07 | Phase 8 | Complete |
 | MARK-01 | Phase 9 | Pending |
 | MARK-02 | Phase 9 | Pending |
 | MARK-03 | Phase 9 | Pending |
 | MARK-04 | Phase 7 | Complete |
-| TAGS-01 | Phase 8 | Pending |
-| TAGS-02 | Phase 8 | Pending |
-| TAGS-03 | Phase 8 | Pending |
+| TAGS-01 | Phase 8 | Complete |
+| TAGS-02 | Phase 8 | Complete |
+| TAGS-03 | Phase 8 | Complete |
 | SEO-01 | Phase 10 | Pending |
 | SEO-02 | Phase 10 | Pending |
 | SEO-03 | Phase 10 | Pending |
