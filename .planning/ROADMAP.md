@@ -6,8 +6,8 @@ This roadmap delivers a complete blog feature for the personal portfolio site, a
 
 ## Milestones
 
-- ✅ **v1.0 Portfolio Launch** - Phases 1-5 (shipped pre-GSD)
-- 🚧 **v1.1 Blog Section** - Phases 6-12 (in progress)
+- v1.0 Portfolio Launch - Phases 1-5 (shipped pre-GSD)
+- v1.1 Blog Section - Phases 6-12 (in progress)
 
 ## Phases
 
@@ -17,7 +17,7 @@ This roadmap delivers a complete blog feature for the personal portfolio site, a
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-### ✅ v1.0 Portfolio Launch (Phases 1-5) - SHIPPED
+### v1.0 Portfolio Launch (Phases 1-5) - SHIPPED
 
 <details>
 <summary>Completed phases (pre-GSD tracking)</summary>
@@ -28,42 +28,42 @@ Pre-GSD implementation, no detailed phase breakdown available.
 
 </details>
 
-### 🚧 v1.1 Blog Section (In Progress)
+### v1.1 Blog Section (In Progress)
 
 **Milestone Goal:** Add blog section with markdown content, RSS feed, and proper routing without breaking existing portfolio.
 
-#### ✅ Phase 6: Routing Foundation — COMPLETE
+#### Phase 6: Routing Foundation -- COMPLETE
 **Goal**: Portfolio and blog coexist with proper routes and navigation
 **Depends on**: Nothing (first phase of milestone)
 **Requirements**: ROUT-01, ROUT-02, ROUT-03, ROUT-04
 **Success Criteria** (what must be TRUE):
-  1. ✓ User can navigate to /blog without breaking portfolio sections
-  2. ✓ User can navigate to /blog/:slug URLs for individual posts
-  3. ✓ User can use browser back/forward buttons between blog and portfolio
-  4. ✓ User can click navigation links to return to portfolio from blog
-  5. ✓ Direct links to blog URLs work on deployed site (no 404 errors)
+  1. User can navigate to /blog without breaking portfolio sections
+  2. User can navigate to /blog/:slug URLs for individual posts
+  3. User can use browser back/forward buttons between blog and portfolio
+  4. User can click navigation links to return to portfolio from blog
+  5. Direct links to blog URLs work on deployed site (no 404 errors)
 **Plans:** 3 plans
 **Completed:** 2026-01-28
 
 Plans:
-- [x] 06-01-PLAN.md — Install React Router and create router structure
-- [x] 06-02-PLAN.md — Update navigation (Navbar + BlogNavbar)
-- [x] 06-03-PLAN.md — Blog page shells, transitions, and verification
+- [x] 06-01-PLAN.md -- Install React Router and create router structure
+- [x] 06-02-PLAN.md -- Update navigation (Navbar + BlogNavbar)
+- [x] 06-03-PLAN.md -- Blog page shells, transitions, and verification
 
-#### ✅ Phase 7: Markdown Infrastructure — COMPLETE
+#### Phase 7: Markdown Infrastructure -- COMPLETE
 **Goal**: Markdown files load correctly with metadata extracted
 **Depends on**: Phase 6
 **Requirements**: MARK-04
 **Success Criteria** (what must be TRUE):
-  1. ✓ Markdown files can be discovered and loaded at build time
-  2. ✓ Frontmatter metadata (title, date, tags, author, description, featured image) is parsed correctly
-  3. ✓ Blog manifest JSON is generated with all post metadata
-  4. ✓ Production build successfully includes markdown content (no import.meta.glob failures)
+  1. Markdown files can be discovered and loaded at build time
+  2. Frontmatter metadata (title, date, tags, author, description, featured image) is parsed correctly
+  3. Blog manifest JSON is generated with all post metadata
+  4. Production build successfully includes markdown content (no import.meta.glob failures)
 **Plans:** 1 plan
 **Completed:** 2026-01-28
 
 Plans:
-- [x] 07-01-PLAN.md — Vite blog manifest plugin with frontmatter parsing and validation
+- [x] 07-01-PLAN.md -- Vite blog manifest plugin with frontmatter parsing and validation
 
 #### Phase 8: Blog Index Page
 **Goal**: Users can browse and filter blog posts
@@ -75,10 +75,10 @@ Plans:
   3. User can click a tag to filter posts by that tag
   4. User can view filtered posts at /blog?tag=X
   5. Blog index is responsive on mobile devices
-**Plans**: TBD
+**Plans:** 1 plan
 
 Plans:
-- [ ] 08-01: [TBD during plan-phase]
+- [ ] 08-01-PLAN.md -- Blog index page with post cards, tag filtering, and pagination
 
 #### Phase 9: Markdown Rendering
 **Goal**: Users can read full blog posts with rich markdown content
@@ -142,13 +142,13 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 6 → 7 → 8 → 9 → 10 → 11 → 12
+Phases execute in numeric order: 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 6. Routing Foundation | v1.1 | 3/3 | ✓ Complete | 2026-01-28 |
-| 7. Markdown Infrastructure | v1.1 | 1/1 | ✓ Complete | 2026-01-28 |
-| 8. Blog Index Page | v1.1 | 0/? | Not started | - |
+| 6. Routing Foundation | v1.1 | 3/3 | Complete | 2026-01-28 |
+| 7. Markdown Infrastructure | v1.1 | 1/1 | Complete | 2026-01-28 |
+| 8. Blog Index Page | v1.1 | 0/1 | Not started | - |
 | 9. Markdown Rendering | v1.1 | 0/? | Not started | - |
 | 10. SEO & Metadata | v1.1 | 0/? | Not started | - |
 | 11. RSS & Feeds | v1.1 | 0/? | Not started | - |
