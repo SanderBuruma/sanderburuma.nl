@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { useTheme } from '../utils/hooks'
 
@@ -31,22 +32,30 @@ const Navbar = () => {
         </div>
         <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           {[
-            { label: 'Home', id: 'home' },
+            { label: 'Blog', path: '/blog', isRoute: true },
             { label: 'About', id: 'about' },
-            { label: 'Experience', id: 'experience' },
             { label: 'Projects', id: 'projects' },
-            { label: '4D Minesweeper', id: 'minesweeper' },
-            { label: '4D Snake', id: 'snake' },
+            { label: 'Experience', id: 'experience' },
             { label: 'Contact', id: 'contact' }
           ].map(item => (
-            <li key={item.id} className="nav-item">
-              <a
-                href={`#${item.id}`}
-                className="nav-link"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
+            <li key={item.id || item.path} className="nav-item">
+              {item.isRoute ? (
+                <Link
+                  to={item.path}
+                  className="nav-link"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={`#${item.id}`}
+                  className="nav-link"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
