@@ -90,38 +90,38 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ROUT-01 | — | Pending |
-| ROUT-02 | — | Pending |
-| ROUT-03 | — | Pending |
-| ROUT-04 | — | Pending |
-| BLOG-01 | — | Pending |
-| BLOG-02 | — | Pending |
-| BLOG-03 | — | Pending |
-| BLOG-04 | — | Pending |
-| BLOG-05 | — | Pending |
-| BLOG-06 | — | Pending |
-| BLOG-07 | — | Pending |
-| MARK-01 | — | Pending |
-| MARK-02 | — | Pending |
-| MARK-03 | — | Pending |
-| MARK-04 | — | Pending |
-| TAGS-01 | — | Pending |
-| TAGS-02 | — | Pending |
-| TAGS-03 | — | Pending |
-| SEO-01 | — | Pending |
-| SEO-02 | — | Pending |
-| SEO-03 | — | Pending |
-| RSS-01 | — | Pending |
-| RSS-02 | — | Pending |
-| RSS-03 | — | Pending |
-| THEM-01 | — | Pending |
-| THEM-02 | — | Pending |
+| ROUT-01 | Phase 6 | Pending |
+| ROUT-02 | Phase 6 | Pending |
+| ROUT-03 | Phase 6 | Pending |
+| ROUT-04 | Phase 6 | Pending |
+| BLOG-01 | Phase 8 | Pending |
+| BLOG-02 | Phase 9 | Pending |
+| BLOG-03 | Phase 8 | Pending |
+| BLOG-04 | Phase 9 | Pending |
+| BLOG-05 | Phase 9 | Pending |
+| BLOG-06 | Phase 9 | Pending |
+| BLOG-07 | Phase 8 | Pending |
+| MARK-01 | Phase 9 | Pending |
+| MARK-02 | Phase 9 | Pending |
+| MARK-03 | Phase 9 | Pending |
+| MARK-04 | Phase 7 | Pending |
+| TAGS-01 | Phase 8 | Pending |
+| TAGS-02 | Phase 8 | Pending |
+| TAGS-03 | Phase 8 | Pending |
+| SEO-01 | Phase 10 | Pending |
+| SEO-02 | Phase 10 | Pending |
+| SEO-03 | Phase 10 | Pending |
+| RSS-01 | Phase 11 | Pending |
+| RSS-02 | Phase 11 | Pending |
+| RSS-03 | Phase 11 | Pending |
+| THEM-01 | Phase 12 | Pending |
+| THEM-02 | Phase 12 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 26 total
-- Mapped to phases: 0
-- Unmapped: 26 ⚠️
+- Mapped to phases: 26 ✓
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-01-28*
-*Last updated: 2026-01-28 after initial definition*
+*Last updated: 2026-01-28 (traceability updated after roadmap creation)*
