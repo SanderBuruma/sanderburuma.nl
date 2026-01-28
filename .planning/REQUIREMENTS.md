@@ -104,7 +104,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MARK-01 | Phase 9 | Pending |
 | MARK-02 | Phase 9 | Pending |
 | MARK-03 | Phase 9 | Pending |
-| MARK-04 | Phase 7 | Pending |
+| MARK-04 | Phase 7 | Complete |
 | TAGS-01 | Phase 8 | Pending |
 | TAGS-02 | Phase 8 | Pending |
 | TAGS-03 | Phase 8 | Pending |

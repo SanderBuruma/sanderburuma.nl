@@ -50,19 +50,20 @@ Plans:
 - [x] 06-02-PLAN.md — Update navigation (Navbar + BlogNavbar)
 - [x] 06-03-PLAN.md — Blog page shells, transitions, and verification
 
-#### Phase 7: Markdown Infrastructure
+#### ✅ Phase 7: Markdown Infrastructure — COMPLETE
 **Goal**: Markdown files load correctly with metadata extracted
 **Depends on**: Phase 6
 **Requirements**: MARK-04
 **Success Criteria** (what must be TRUE):
-  1. Markdown files can be discovered and loaded at build time
-  2. Frontmatter metadata (title, date, tags, author, description, featured image) is parsed correctly
-  3. Blog manifest JSON is generated with all post metadata
-  4. Production build successfully includes markdown content (no import.meta.glob failures)
-**Plans**: 1 plan
+  1. ✓ Markdown files can be discovered and loaded at build time
+  2. ✓ Frontmatter metadata (title, date, tags, author, description, featured image) is parsed correctly
+  3. ✓ Blog manifest JSON is generated with all post metadata
+  4. ✓ Production build successfully includes markdown content (no import.meta.glob failures)
+**Plans:** 1 plan
+**Completed:** 2026-01-28
 
 Plans:
-- [ ] 07-01-PLAN.md — Vite blog manifest plugin with frontmatter parsing and validation
+- [x] 07-01-PLAN.md — Vite blog manifest plugin with frontmatter parsing and validation
 
 #### Phase 8: Blog Index Page
 **Goal**: Users can browse and filter blog posts
@@ -146,7 +147,7 @@ Phases execute in numeric order: 6 → 7 → 8 → 9 → 10 → 11 → 12
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 6. Routing Foundation | v1.1 | 3/3 | ✓ Complete | 2026-01-28 |
-| 7. Markdown Infrastructure | v1.1 | 0/1 | Not started | - |
+| 7. Markdown Infrastructure | v1.1 | 1/1 | ✓ Complete | 2026-01-28 |
 | 8. Blog Index Page | v1.1 | 0/? | Not started | - |
 | 9. Markdown Rendering | v1.1 | 0/? | Not started | - |
 | 10. SEO & Metadata | v1.1 | 0/? | Not started | - |
