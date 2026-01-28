@@ -28,7 +28,7 @@ const RouteTransition = ({ children }) => {
 
   return (
     <div className={`route-transition ${isTransitioning ? 'transitioning' : ''}`}>
-      {children}
+      {typeof children === 'function' ? children(displayLocation) : children}
     </div>
   )
 }

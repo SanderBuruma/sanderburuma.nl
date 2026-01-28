@@ -11,12 +11,14 @@ const App = () => {
     <ThemeProvider>
       <BrowserRouter>
         <RouteTransition>
-          <Routes>
-            <Route path="/" element={<Portfolio />} />
-            <Route path="/blog" element={<BlogIndex />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="*" element={<Blog404 />} />
-          </Routes>
+          {(displayLocation) => (
+            <Routes location={displayLocation}>
+              <Route path="/" element={<Portfolio />} />
+              <Route path="/blog" element={<BlogIndex />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="*" element={<Blog404 />} />
+            </Routes>
+          )}
         </RouteTransition>
       </BrowserRouter>
     </ThemeProvider>
