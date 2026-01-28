@@ -9,10 +9,10 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### Routing
 
-- [ ] **ROUT-01**: User can navigate to /blog without breaking existing portfolio
-- [ ] **ROUT-02**: User can navigate to /blog/:slug for individual posts
-- [ ] **ROUT-03**: User can return to portfolio from blog via navigation
-- [ ] **ROUT-04**: Browser back/forward works correctly between blog and portfolio
+- [x] **ROUT-01**: User can navigate to /blog without breaking existing portfolio
+- [x] **ROUT-02**: User can navigate to /blog/:slug for individual posts
+- [x] **ROUT-03**: User can return to portfolio from blog via navigation
+- [x] **ROUT-04**: Browser back/forward works correctly between blog and portfolio
 
 ### Blog Content
 
@@ -90,10 +90,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ROUT-01 | Phase 6 | Pending |
-| ROUT-02 | Phase 6 | Pending |
-| ROUT-03 | Phase 6 | Pending |
-| ROUT-04 | Phase 6 | Pending |
+| ROUT-01 | Phase 6 | Complete |
+| ROUT-02 | Phase 6 | Complete |
+| ROUT-03 | Phase 6 | Complete |
+| ROUT-04 | Phase 6 | Complete |
 | BLOG-01 | Phase 8 | Pending |
 | BLOG-02 | Phase 9 | Pending |
 | BLOG-03 | Phase 8 | Pending |
