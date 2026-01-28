@@ -222,6 +222,55 @@ body {
     }
 }
 
+// Blog Navbar (simplified for blog pages)
+.blog-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    @include transition(background);
+}
+
+.blog-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $gap-default;
+}
+
+.blog-nav-logo {
+    text-decoration: none;
+    color: var(--text-primary);
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+.blog-nav-links {
+    display: flex;
+    gap: $gap-default;
+}
+
+.blog-nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    @include transition(color);
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
 // Hero
 .hero {
     min-height: 100vh;
