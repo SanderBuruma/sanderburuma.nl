@@ -39,9 +39,9 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### SEO & Sharing
 
-- [ ] **SEO-01**: Each post has proper title and meta description
-- [ ] **SEO-02**: Each post has Open Graph tags for social sharing
-- [ ] **SEO-03**: Featured image appears in social media previews
+- [x] **SEO-01**: Each post has proper title and meta description
+- [x] **SEO-02**: Each post has Open Graph tags for social sharing
+- [x] **SEO-03**: Featured image appears in social media previews
 
 ### RSS
 
@@ -108,9 +108,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TAGS-01 | Phase 8 | Complete |
 | TAGS-02 | Phase 8 | Complete |
 | TAGS-03 | Phase 8 | Complete |
-| SEO-01 | Phase 10 | Pending |
-| SEO-02 | Phase 10 | Pending |
-| SEO-03 | Phase 10 | Pending |
+| SEO-01 | Phase 10 | Complete |
+| SEO-02 | Phase 10 | Complete |
+| SEO-03 | Phase 10 | Complete |
 | RSS-01 | Phase 11 | Pending |
 | RSS-02 | Phase 11 | Pending |
 | RSS-03 | Phase 11 | Pending |
