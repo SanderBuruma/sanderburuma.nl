@@ -74,7 +74,6 @@ const BlogIndex = () => {
       <main className="blog-page">
         <div className="blog-container">
           <header className="blog-header">
-            <h1>Blog</h1>
             <p className="blog-subtitle">Thoughts on software development, web technologies, and more.</p>
           </header>
 
