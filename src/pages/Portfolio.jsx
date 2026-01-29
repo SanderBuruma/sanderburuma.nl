@@ -12,6 +12,21 @@ import ContactSection from '../sections/ContactSection'
 
 const Portfolio = () => {
   useEffect(() => {
+    const handleInitialScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          // Use a timeout to ensure all content is loaded and rendered
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    };
+
+    handleInitialScroll();
+    
     const smoothScroll = (e) => {
       if (e.target.getAttribute('href')?.startsWith('#')) {
         e.preventDefault()
