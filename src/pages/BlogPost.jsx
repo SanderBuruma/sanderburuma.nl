@@ -3,6 +3,7 @@ import { useState } from 'react'
 import BlogNavbar from '../components/BlogNavbar'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import Blog404 from '../pages/Blog404'
+import SEOHead from '../components/SEOHead'
 import posts from 'virtual:blog-manifest'
 
 const BlogPost = () => {
@@ -12,7 +13,17 @@ const BlogPost = () => {
   const post = posts.find(p => p.slug === slug)
 
   if (!post) {
-    return <Blog404 />
+    return (
+      <>
+        <SEOHead
+          title="Post Not Found"
+          description="The blog post you're looking for could not be found."
+          url={`https://sanderburuma.nl/blog/${slug}`}
+          type="website"
+        />
+        <Blog404 />
+      </>
+    )
   }
 
   const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
@@ -23,6 +34,18 @@ const BlogPost = () => {
 
   return (
     <>
+      <SEOHead
+        title={post.title}
+        description={post.description}
+        url={`https://sanderburuma.nl/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+        article={{
+          author: post.author,
+          publishedTime: post.date,
+          tags: post.tags
+        }}
+      />
       <BlogNavbar />
       <main className="blog-page">
         <article className="blog-post">
