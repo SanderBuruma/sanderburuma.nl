@@ -1,0 +1,48 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#1a1a2e"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a3e" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+
+  <!-- Main content container -->
+  <g>
+    <!-- Name -->
+    <text
+      x="600"
+      y="280"
+      font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="64"
+      font-weight="700"
+      fill="#ffffff"
+      text-anchor="middle">
+      Sander Buruma
+    </text>
+
+    <!-- Subtitle -->
+    <text
+      x="600"
+      y="350"
+      font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="32"
+      font-weight="400"
+      fill="#a8a8b8"
+      text-anchor="middle">
+      Tech Blog
+    </text>
+
+    <!-- Decorative line -->
+    <line
+      x1="400"
+      y1="400"
+      x2="800"
+      y2="400"
+      stroke="#4a90e2"
+      stroke-width="2"/>
+  </g>
+</svg>
