@@ -248,7 +248,8 @@ body {
     right: 0;
     z-index: 1000;
     padding: 1rem 2rem;
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     @include transition(background);
 }
@@ -900,6 +901,22 @@ section { padding: 5rem 0; }
         border-color: var(--border-color);
 
         &::placeholder { color: var(--text-light); }
+    }
+
+    // Main navbar dark theme
+    .navbar {
+        background: rgba(15, 23, 42, 0.95);
+    }
+
+    // Blog navbar dark theme
+    .blog-navbar {
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    // Lightbox dark theme
+    .image-lightbox {
+        background: rgba(0, 0, 0, 0.92);
     }
 }
 
@@ -1863,6 +1880,7 @@ section { padding: 5rem 0; }
     background: rgba(0, 0, 0, 0.85);
     @include flex-center;
     cursor: pointer;
+    @include transition(background);
 
     img {
         max-width: 90vw;
