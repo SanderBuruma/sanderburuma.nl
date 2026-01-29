@@ -2,6 +2,7 @@
 title: Welcome to My Blog
 date: 2026-01-28
 description: Launching my personal blog to share insights on web development, software engineering, and the journey of building modern applications.
+image: /images/blog/hello-world.jpg
 tags:
   - meta
   - web-development
