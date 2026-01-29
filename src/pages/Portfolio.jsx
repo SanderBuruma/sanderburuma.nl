@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import SEOHead from '../components/SEOHead'
 import HeroSection from '../sections/HeroSection'
 import AboutSection from '../sections/AboutSection'
 import ExperienceSection from '../sections/ExperienceSection'
@@ -68,6 +69,13 @@ const Portfolio = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Software Developer"
+        description="Experienced software developer specializing in Python, blockchain analysis, and web development. Based in Netherlands. Available for remote work and projects."
+        url="https://sanderburuma.nl"
+        image="/og-image.jpg"
+        type="website"
+      />
       <Navbar />
       <HeroSection />
       <AboutSection />

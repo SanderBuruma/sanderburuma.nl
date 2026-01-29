@@ -3,6 +3,7 @@ import BlogNavbar from '../components/BlogNavbar'
 import BlogPostCard from '../components/BlogPostCard'
 import TagFilter from '../components/TagFilter'
 import Pagination from '../components/Pagination'
+import SEOHead from '../components/SEOHead'
 import posts from 'virtual:blog-manifest'
 
 const POSTS_PER_PAGE = 10
@@ -63,6 +64,12 @@ const BlogIndex = () => {
 
   return (
     <>
+      <SEOHead
+        title="Tech Blog"
+        description="Thoughts on web development, software engineering, and building modern applications. Technical articles and insights from Sander Buruma."
+        url="https://sanderburuma.nl/blog"
+        type="website"
+      />
       <BlogNavbar />
       <main className="blog-page">
         <div className="blog-container">
