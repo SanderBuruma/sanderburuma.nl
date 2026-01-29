@@ -13,6 +13,15 @@
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, .1);
     --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, .1);
     --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    // Code block variables (light theme)
+    --code-bg: #fafafa;
+    --code-text: #383a42;
+    --code-comment: #a0a1a7;
+    --code-line-numbers: #9d9d9f;
+    --code-border: #e5e5e6;
+    --code-btn-bg: rgba(0, 0, 0, 0.06);
+    --code-btn-text: #696c77;
 }
 
 [data-theme="dark"] {
@@ -25,6 +34,15 @@
     --border-color: #334155;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, .3);
     --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, .3);
+
+    // Code block variables (dark theme)
+    --code-bg: #282c34;
+    --code-text: #abb2bf;
+    --code-comment: #5c6370;
+    --code-line-numbers: #636d83;
+    --code-border: #3e4451;
+    --code-btn-bg: rgba(255, 255, 255, 0.1);
+    --code-btn-text: #abb2bf;
 }
 
 // SCSS Variables
@@ -1644,10 +1662,11 @@ section { padding: 5rem 0; }
 // Code block wrapper
 .code-block-wrapper {
     position: relative;
-    background: #282c34;
+    background: var(--code-bg);
     border-radius: $border-radius-sm;
     margin: 1.5rem 0;
     overflow: hidden;
+    @include transition(background-color);
 }
 
 .code-language-label {
@@ -1655,22 +1674,23 @@ section { padding: 5rem 0; }
     top: 0.5rem;
     right: 3.5rem;
     font-size: 0.75rem;
-    color: #636d83;
+    color: var(--code-line-numbers);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     user-select: none;
+    @include transition(color);
 }
 
 .code-copy-btn {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--code-btn-bg);
     border: none;
     border-radius: 4px;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
-    color: #abb2bf;
+    color: var(--code-btn-text);
     cursor: pointer;
     opacity: 0;
     @include transition(opacity);
@@ -1707,11 +1727,104 @@ section { padding: 5rem 0; }
     padding: 1rem 0.75rem;
     text-align: right;
     user-select: none;
-    color: #636d83;
+    color: var(--code-line-numbers);
     font-size: 0.875rem;
     line-height: 1.6;
-    border-right: 1px solid #3e4451;
+    border-right: 1px solid var(--code-border);
     min-width: 2.5rem;
+    @include transition(color, border-color);
+}
+
+// Highlight.js theme (atom-one-light for light theme)
+.hljs {
+    background: var(--code-bg);
+    color: var(--code-text);
+    @include transition(background-color, color);
+}
+
+.hljs-comment, .hljs-quote {
+    color: #a0a1a7;
+    font-style: italic;
+}
+
+.hljs-keyword, .hljs-selector-tag {
+    color: #a626a4;
+}
+
+.hljs-string, .hljs-addition {
+    color: #50a14f;
+}
+
+.hljs-number, .hljs-literal {
+    color: #986801;
+}
+
+.hljs-built_in, .hljs-type {
+    color: #c18401;
+}
+
+.hljs-attr, .hljs-variable, .hljs-template-variable {
+    color: #986801;
+}
+
+.hljs-title, .hljs-section {
+    color: #4078f2;
+}
+
+.hljs-name, .hljs-selector-id, .hljs-selector-class {
+    color: #e45649;
+}
+
+.hljs-deletion {
+    color: #e45649;
+}
+
+.hljs-meta {
+    color: #4078f2;
+}
+
+// Dark theme hljs token overrides (atom-one-dark)
+[data-theme="dark"] {
+    .hljs-comment, .hljs-quote {
+        color: #5c6370;
+        font-style: italic;
+    }
+
+    .hljs-keyword, .hljs-selector-tag {
+        color: #c678dd;
+    }
+
+    .hljs-string, .hljs-addition {
+        color: #98c379;
+    }
+
+    .hljs-number, .hljs-literal {
+        color: #d19a66;
+    }
+
+    .hljs-built_in, .hljs-type {
+        color: #e6c07b;
+    }
+
+    .hljs-attr, .hljs-variable, .hljs-template-variable {
+        color: #d19a66;
+    }
+
+    .hljs-title, .hljs-section {
+        color: #61afef;
+    }
+
+    .hljs-name, .hljs-selector-id, .hljs-selector-class {
+        color: #e06c75;
+    }
+
+    .hljs-deletion {
+        color: #e06c75;
+    }
+
+    .hljs-meta {
+        color: #61afef;
+    }
 }
 
 // Markdown images / figures

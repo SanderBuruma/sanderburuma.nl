@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
-import 'highlight.js/styles/atom-one-dark.css';
 import ImageLightbox from './ImageLightbox';
 
 function slugify(text) {
