@@ -66,7 +66,7 @@ I'm working on several posts exploring:
 
 Stay tuned, and thanks for reading!
 
-![Blog Launch](../../../public/images/blog/hello-world.jpg)
+![Blog Launch](/images/blog/hello-world.jpg)
 
 ---
 
