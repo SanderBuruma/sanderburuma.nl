@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import blogManifest from './src/plugins/blogManifest.js'
 import seoPrerender from './src/plugins/seoPrerender.js'
+import rssFeed from './src/plugins/rssFeed.js'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
     react(),
     blogManifest(),
     seoPrerender(),
+    rssFeed(),
     createHtmlPlugin({
       minify: true,
       inject: {
@@ -56,6 +58,16 @@ export default defineConfig({
               as: 'font',
               type: 'font/woff2',
               crossorigin: 'anonymous'
+            }
+          },
+          {
+            injectTo: 'head',
+            tag: 'link',
+            attrs: {
+              rel: 'alternate',
+              type: 'application/rss+xml',
+              title: 'Tech Blog | Sander Buruma',
+              href: 'https://sanderburuma.nl/rss.xml'
             }
           }
         ]
