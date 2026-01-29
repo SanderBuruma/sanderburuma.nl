@@ -111,7 +111,21 @@ function extractFeaturedImage(frontmatter, content) {
   // Scan content for first image markdown: ![alt](url)
   const imageRegex = /!\[.*?\]\((.*?)\)/;
   const match = content.match(imageRegex);
-  return match ? match[1] : null;
+  if (!match) return null;
+
+  let imagePath = match[1];
+
+  // Normalize relative paths to absolute paths
+  // Convert ../../../public/images/... to /images/...
+  if (imagePath.includes('../public/')) {
+    imagePath = imagePath.replace(/.*\/public\//, '/');
+  }
+  // Convert ./images/... to /images/...
+  if (imagePath.startsWith('./images/')) {
+    imagePath = imagePath.replace('./', '/');
+  }
+
+  return imagePath;
 }
 
 /**
@@ -198,16 +212,18 @@ function generatePostHtml(baseHtml, post) {
   html = replaceMetaTag(html, 'twitter:description', post.description);
   html = replaceMetaTag(html, 'twitter:image', ogImage);
 
-  // Add article-specific meta tags before Twitter section
+  // Add article-specific meta tags after og:locale (in minified HTML, comments are removed)
   const articleMetas = [
     `<meta property="article:published_time" content="${post.date}">`,
     `<meta property="article:author" content="${post.author}">`,
     ...post.tags.map(tag => `<meta property="article:tag" content="${tag}">`)
-  ].join('\n    ');
+  ].join('');
 
-  const twitterComment = '<!-- Twitter -->';
-  if (html.includes(twitterComment)) {
-    html = html.replace(twitterComment, `${articleMetas}\n\n    ${twitterComment}`);
+  // Find the last og: property tag and insert article tags after it
+  const ogLocalePattern = /<meta property="og:locale:alternate"[^>]*>/;
+  const match = html.match(ogLocalePattern);
+  if (match) {
+    html = html.replace(ogLocalePattern, match[0] + articleMetas);
   }
 
   return html;

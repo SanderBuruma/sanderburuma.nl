@@ -2,12 +2,14 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import blogManifest from './src/plugins/blogManifest.js'
+import seoPrerender from './src/plugins/seoPrerender.js'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     blogManifest(),
+    seoPrerender(),
     createHtmlPlugin({
       minify: true,
       inject: {
