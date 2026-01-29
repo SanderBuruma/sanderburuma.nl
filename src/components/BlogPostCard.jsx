@@ -23,7 +23,7 @@ const BlogPostCard = ({ post, activeTags = [], onTagClick }) => {
         </Link>
         <div className="blog-post-meta">
           <span className="blog-post-date">{formatDate(post.date)}</span>
-          <span className="blog-post-reading-time">{post.readingTime}</span>
+          <span className="blog-post-reading-time">{post.readingTime} min read</span>
         </div>
         <p className="blog-post-description">{post.description}</p>
         <div className="blog-post-tags">
