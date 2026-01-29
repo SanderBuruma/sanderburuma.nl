@@ -17,18 +17,18 @@ Requirements for blog milestone. Each maps to roadmap phases.
 ### Blog Content
 
 - [x] **BLOG-01**: User can view list of all blog posts on /blog page
-- [ ] **BLOG-02**: User can read individual blog post with full markdown content
+- [x] **BLOG-02**: User can read individual blog post with full markdown content
 - [x] **BLOG-03**: User can see publish date on each post
-- [ ] **BLOG-04**: User can see author information on each post
-- [ ] **BLOG-05**: User can see featured image at top of post
-- [ ] **BLOG-06**: User can see reading time estimate for each post
+- [x] **BLOG-04**: User can see author information on each post
+- [x] **BLOG-05**: User can see featured image at top of post
+- [x] **BLOG-06**: User can see reading time estimate for each post
 - [x] **BLOG-07**: Blog layout is responsive on mobile devices
 
 ### Markdown
 
-- [ ] **MARK-01**: Markdown content renders correctly (headings, lists, links, images)
-- [ ] **MARK-02**: Code blocks display with syntax highlighting
-- [ ] **MARK-03**: User can copy code blocks with one click
+- [x] **MARK-01**: Markdown content renders correctly (headings, lists, links, images)
+- [x] **MARK-02**: Code blocks display with syntax highlighting
+- [x] **MARK-03**: User can copy code blocks with one click
 - [ ] **MARK-04**: Frontmatter metadata (title, date, tags, etc.) parsed correctly
 
 ### Tags
@@ -95,15 +95,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ROUT-03 | Phase 6 | Complete |
 | ROUT-04 | Phase 6 | Complete |
 | BLOG-01 | Phase 8 | Complete |
-| BLOG-02 | Phase 9 | Pending |
+| BLOG-02 | Phase 9 | Complete |
 | BLOG-03 | Phase 8 | Complete |
-| BLOG-04 | Phase 9 | Pending |
-| BLOG-05 | Phase 9 | Pending |
-| BLOG-06 | Phase 9 | Pending |
+| BLOG-04 | Phase 9 | Complete |
+| BLOG-05 | Phase 9 | Complete |
+| BLOG-06 | Phase 9 | Complete |
 | BLOG-07 | Phase 8 | Complete |
-| MARK-01 | Phase 9 | Pending |
-| MARK-02 | Phase 9 | Pending |
-| MARK-03 | Phase 9 | Pending |
+| MARK-01 | Phase 9 | Complete |
+| MARK-02 | Phase 9 | Complete |
+| MARK-03 | Phase 9 | Complete |
 | MARK-04 | Phase 7 | Complete |
 | TAGS-01 | Phase 8 | Complete |
 | TAGS-02 | Phase 8 | Complete |

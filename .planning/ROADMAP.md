@@ -81,7 +81,7 @@ Plans:
 Plans:
 - [x] 08-01-PLAN.md -- Blog index page with post cards, tag filtering, and pagination
 
-#### Phase 9: Markdown Rendering
+#### Phase 9: Markdown Rendering -- COMPLETE
 **Goal**: Users can read full blog posts with rich markdown content
 **Depends on**: Phase 7
 **Requirements**: BLOG-02, BLOG-04, BLOG-05, BLOG-06, MARK-01, MARK-02, MARK-03
@@ -94,10 +94,11 @@ Plans:
   6. User can see featured image at top of post
   7. User can see reading time estimate for each post
 **Plans:** 2 plans
+**Completed:** 2026-01-29
 
 Plans:
-- [ ] 09-01-PLAN.md -- MarkdownRenderer component with syntax highlighting, copy, lightbox
-- [ ] 09-02-PLAN.md -- BlogPost page wiring with header/metadata and styles
+- [x] 09-01-PLAN.md -- MarkdownRenderer component with syntax highlighting, copy, lightbox
+- [x] 09-02-PLAN.md -- BlogPost page wiring with header/metadata and styles
 
 #### Phase 10: SEO & Metadata
 **Goal**: Blog posts are discoverable and shareable with proper metadata
@@ -151,7 +152,7 @@ Phases execute in numeric order: 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 | 6. Routing Foundation | v1.1 | 3/3 | Complete | 2026-01-28 |
 | 7. Markdown Infrastructure | v1.1 | 1/1 | Complete | 2026-01-28 |
 | 8. Blog Index Page | v1.1 | 1/1 | Complete | 2026-01-28 |
-| 9. Markdown Rendering | v1.1 | 0/2 | Not started | - |
+| 9. Markdown Rendering | v1.1 | 2/2 | Complete | 2026-01-29 |
 | 10. SEO & Metadata | v1.1 | 0/? | Not started | - |
 | 11. RSS & Feeds | v1.1 | 0/? | Not started | - |
 | 12. Theme Integration | v1.1 | 0/? | Not started | - |
