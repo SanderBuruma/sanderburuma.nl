@@ -45,9 +45,9 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### RSS
 
-- [ ] **RSS-01**: RSS feed generated at /rss.xml with all posts
-- [ ] **RSS-02**: RSS feed includes title, date, description for each post
-- [ ] **RSS-03**: RSS feed validates against RSS 2.0 specification
+- [x] **RSS-01**: RSS feed generated at /rss.xml with all posts
+- [x] **RSS-02**: RSS feed includes title, date, description for each post
+- [x] **RSS-03**: RSS feed validates against RSS 2.0 specification
 
 ### Theme
 
@@ -111,9 +111,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SEO-01 | Phase 10 | Complete |
 | SEO-02 | Phase 10 | Complete |
 | SEO-03 | Phase 10 | Complete |
-| RSS-01 | Phase 11 | Pending |
-| RSS-02 | Phase 11 | Pending |
-| RSS-03 | Phase 11 | Pending |
+| RSS-01 | Phase 11 | Complete |
+| RSS-02 | Phase 11 | Complete |
+| RSS-03 | Phase 11 | Complete |
 | THEM-01 | Phase 12 | Pending |
 | THEM-02 | Phase 12 | Pending |
 
