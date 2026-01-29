@@ -51,8 +51,8 @@ Requirements for blog milestone. Each maps to roadmap phases.
 
 ### Theme
 
-- [ ] **THEM-01**: Blog pages respect dark/light theme setting
-- [ ] **THEM-02**: Theme toggle works on blog pages same as portfolio
+- [x] **THEM-01**: Blog pages respect dark/light theme setting
+- [x] **THEM-02**: Theme toggle works on blog pages same as portfolio
 
 ## Future Requirements
 
@@ -114,8 +114,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RSS-01 | Phase 11 | Complete |
 | RSS-02 | Phase 11 | Complete |
 | RSS-03 | Phase 11 | Complete |
-| THEM-01 | Phase 12 | Pending |
-| THEM-02 | Phase 12 | Pending |
+| THEM-01 | Phase 12 | Complete |
+| THEM-02 | Phase 12 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 26 total
@@ -124,4 +124,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-28*
-*Last updated: 2026-01-28 (traceability updated after roadmap creation)*
+*Last updated: 2026-01-29 (Phase 12 requirements complete)*
