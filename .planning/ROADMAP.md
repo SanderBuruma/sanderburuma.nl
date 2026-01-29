@@ -140,10 +140,10 @@ Plans:
   2. Theme toggle works on blog pages same as portfolio
   3. Blog styles extend existing SCSS architecture consistently
   4. Theme transitions are smooth between portfolio and blog sections
-**Plans**: TBD
+**Plans:** 1 plan
 
 Plans:
-- [ ] 12-01: [TBD during plan-phase]
+- [ ] 12-01-PLAN.md -- Theme-aware code blocks, lightbox, and navbar styles
 
 ## Progress
 
@@ -158,8 +158,8 @@ Phases execute in numeric order: 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 | 9. Markdown Rendering | v1.1 | 2/2 | Complete | 2026-01-29 |
 | 10. SEO & Metadata | v1.1 | 2/2 | Complete | 2026-01-29 |
 | 11. RSS & Feeds | v1.1 | 1/1 | Complete | 2026-01-29 |
-| 12. Theme Integration | v1.1 | 0/? | Not started | - |
+| 12. Theme Integration | v1.1 | 0/1 | Not started | - |
 
 ---
 *Created: 2026-01-28*
-*Last updated: 2026-01-29 (Phase 11 complete)*
+*Last updated: 2026-01-29 (Phase 12 planned)*
