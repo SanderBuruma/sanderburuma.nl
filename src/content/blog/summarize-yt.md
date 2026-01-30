@@ -1,5 +1,5 @@
 ---
-title: Summarize Any YouTube From Your Terminal
+title: Summarize Any YouTube Video From Your Terminal
 date: 2026-01-30
 description: A simple script that chains a Python transcript fetcher with Claude CLI to get rapid bullet-point summaries of YouTube videos.
 image: /images/blog/summarize-yt.jpg
@@ -14,7 +14,7 @@ author: Sander Buruma
 
 # Summarize Any YouTube Video From Your Terminal
 
-I watch a lot of YouTube — tutorials, conference talks, deep dives on topics I'm researching. But not every video deserves 45 minutes of my attention. Sometimes I just need the key points. It could be one of those really long videos that sound kind of interesting or the speaker is really rambly and goes on tangents a lot that you're just not interested in. But you still want meaty bits because they're just that awesome. Theree are lots of youtube summarizers around, but I find them just a little too inconvenient for me. I can't control the summary prompt or they might take too long.
+I watch a lot of YouTube - tutorials, conference talks, deep dives on topics I'm researching. But not every video deserves 45 minutes of my attention. Sometimes I just need the key points. Maybe it's a really long video that sounds kind of interesting but the speaker goes on tangents you don't care about. You still want the meaty bits - they're just that good. But you still want the meaty bits because they're just that awesome. There are lots of youtube summarizers around, but I find them just a little too inconvenient for me. I can't control the summary prompt or they might take too long.
 
 Within a minute or two (depending on video length and your LLM setup) you'll even have a full summary of videos that go on for 3 hours or more. Short videos take literally less than 10 seconds.
 
@@ -134,10 +134,10 @@ If you use a different AI tool (ChatGPT, local LLM, etc.), paste this prompt to 
 
 There are plenty of YouTube summarizer websites. The terminal approach has a few advantages:
 
-- **No context switching** — I'm already in the terminal most of the day
-- **No accounts or subscriptions** — just tools I already have installed
-- **Composable** — the transcript fetcher works independently, and I can swap the summarizer prompt for anything else
-- **Fast** — clipboard to summary in one command, no browser tabs
+- **No context switching** - I'm already in the terminal most of the day
+- **No accounts or subscriptions** - just tools I already have installed
+- **Composable** - the transcript fetcher works independently, and I can swap the summarizer prompt for anything else
+- **Fast** - clipboard to summary in one command, no browser tabs
 
 ## Possible Extensions
 
