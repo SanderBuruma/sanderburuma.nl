@@ -2,7 +2,7 @@
 title: Playing Minesweeper in Four Dimensions
 date: 2026-02-04
 description: Regular minesweeper not challenging enough? Try navigating a 4x4x4x4 grid where each cell can have up to 80 neighbors instead of 8.
-image: /images/blog/Minesweeper-1.jpg
+image: /images/blog/minesweeper-1.jpg
 tags:
   - games
   - puzzle
@@ -16,11 +16,9 @@ What if minesweeper had more dimensions? Not just a flat 2D grid, but a full 4D 
 
 ## What Is 4D Minesweeper?
 
-Regular minesweeper is played on a 2D grid with X and Y coordinates. You click cells, reveal numbers, and avoid mines. Simple.
+Regular minesweeper is played on a 2D grid with X and Y coordinates. You click cells, reveal numbers, and avoid mines.
 
-4D minesweeper adds two more dimensions: Z and W. The grid is 4×4×4×4, giving you 256 total cells to work with. Instead of each cell having up to 8 neighbors (3² - 1), each cell can have up to **80 neighbors** (3⁴ - 1). That's a lot of adjacent cells to track.
-
-The challenge isn't just the math — it's wrapping your head around what "adjacent" even means when you're working in four dimensions.
+4D minesweeper adds two more dimensions: Z and W. The grid is 4×4×4×4, giving you 256 total cells to work with. Instead of each cell having up to 8 neighbors, each cell can have up to **80 neighbors**. That's a lot of adjacent cells to track.
 
 ## How to Read the Grid
 
@@ -56,9 +54,7 @@ When the game starts, it automatically reveals a random zero cell. Zeros cascade
 
 ### Think in slices
 
-A cell in mini-grid (1,2) isn't just adjacent to cells in its own grid. It's also adjacent to cells in the eight surrounding mini-grids: (0,1), (0,2), (0,3), (1,1), (1,3), (2,1), (2,2), (2,3). Basically a 3×3 area of mini-grids centered around it.
-
-If you see a high number like 60+, don't panic — that just means most of the neighboring cells (across all four dimensions) contain mines. Use the revealed information to deduce safe cells.
+A cell in mini-grid isn't just adjacent to cells in its own grid. It's also adjacent to cells in the eight surrounding mini-grids: Basically up to a 3×3 area of mini-grids centered around it.
 
 ### Corners and edges are safer
 
@@ -66,9 +62,9 @@ Corner cells of corner mini-grids have the fewest neighbors because they're at t
 
 ### Use the flag-adjusted numbers
 
-When you flag a cell, adjacent numbers decrease. If a cell shows "3" and you flag two adjacent cells, that number drops to "1" — meaning there's only one more unflagged mine around it.
+When you flag a cell, adjacent numbers decrease. If a cell shows "3" and you flag two adjacent cells, that number drops to "1" - meaning there's only one more unflagged mine around it.
 
-This is crucial. If a cell shows "0" after you've placed flags, the game auto-reveals all adjacent unflagged cells. Use this to clear large areas quickly. But be careful — if you flag incorrectly, you might auto-reveal a mine and lose.
+If a cell shows "0" after you've placed flags, the game auto-reveals all adjacent unflagged cells. Use this to clear large areas quickly. If you flag incorrectly, you might auto-reveal a mine and lose.
 
 ### Leverage drag-select
 
@@ -80,8 +76,6 @@ The game remembers your mine count in a cookie. Win a few times and you'll be pl
 
 ## Try It
 
-If you're curious, [play it on my portfolio](/portfolio#minesweeper). It's built with React and runs entirely in the browser — no backend, no installs.
+If you're curious, [play it on my website](https://sanderburuma.nl/#minesweeper). It's built with React and runs entirely in the browser — no backend, no installs.
 
-Fair warning: the first few games feel disorienting. Your brain isn't wired for four spatial dimensions. But after a few rounds, the patterns start making sense. You stop thinking "this is impossible" and start thinking "okay, if that's a 12, and I've flagged 8 cells, then these four must be safe."
-
-That's when it clicks. And that's when it gets fun.
+Fair warning: the first few games feel disorienting. Your brain isn't wired for four spatial dimensions. But after a few rounds, the patterns start making sense. That's when it clicks. And that's when it gets fun.
